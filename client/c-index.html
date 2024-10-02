@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Hamro Bus - Start Your Adventure</title>
+    <link rel="stylesheet" href="c-style.css" />
+    <link rel="icon" href="assets/logo.png" />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <div class="logo">
+          <img src="assets/logo.png" alt="Hamro Bus Logo" />
+        </div>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="manage_ticket.html">Manage Ticket</a></li>
+          <li><a href="login.html">Login</a></li>
+          <li><a href="register.html" class="register-btn">Register</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger">☰</div>
+      </nav>
+      <div class="drawer" id="drawer">
+        <div class="drawer-close" id="drawer-close">✕</div>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Manage Ticket</a></li>
+          <li><a href="#">Login</a></li>
+          <li><a href="#" class="register-btn">Register</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-content">
+        <h1>
+          "Start Your Adventure <br />
+          At Hamro Bus"
+        </h1>
+        <div class="search-form">
+          <form>
+            <div class="from">
+              <span> From:</span>
+              <input
+                type="text"
+                id="from"
+                name="from"
+                placeholder="Enter city"
+              />
+            </div>
+            <div class="to">
+              <span> To:</span>
+              <input
+                type="text"
+                id="to"
+                name="to"
+                placeholder="Enter destination"
+              />
+            </div>
+            <div class="date">
+              <span> Date</span>
+              <input type="date" id="date" name="date" />
+            </div>
+
+            <button type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="offers">
+      <div class="offer-heading">
+        <span class="divider"></span>
+        <h2>Offers</h2>
+        <span class="divider"></span>
+      </div>
+      <div class="offer-cards">
+        <div class="card">
+          <img src="assets/bus.jpg" alt="Offer Image" />
+          <div class="card-content">
+            <h3>Pokhara to Chitwan</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          </div>
+        </div>
+        <div class="card">
+          <img src="assets/bus.jpg" alt="Offer Image" />
+          <div class="card-content">
+            <h3>Pokhara to Chitwan</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          </div>
+        </div>
+        <div class="card">
+          <img src="assets/bus.jpg" alt="Offer Image" />
+          <div class="card-content">
+            <h3>Pokhara to Chitwan</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit
+            </p>
+          </div>
+        </div>
+      </div>
+      <button class="view-all-btn">View All</button>
+    </section>
+
+    <footer>
+      <p>&copy;2024 Hamro Bus | All Rights Reserved</p>
+    </footer>
+    <script src="c-script.js"></script>
+  </body>
+</html>
