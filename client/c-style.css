@@ -34,13 +34,10 @@ body {
 .nav-links {
   list-style-type: none;
   display: flex;
- 
-  
 }
 
 .nav-links li {
   margin: 0 1rem;
-
 }
 
 .nav-links a {
@@ -114,7 +111,6 @@ body {
   justify-content: center;
   flex-direction: row;
   gap: 15px;
-  
 }
 
 .from {
@@ -125,14 +121,14 @@ body {
   color: #283f5e;
 }
 .to {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: left;
-    color: #283f5e;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+  color: #283f5e;
 }
 .date {
-    display: flex;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: left;
@@ -158,7 +154,6 @@ body {
   font-weight: bold;
   margin-top: 25.6px;
   width: 17%;
- 
 }
 
 .search-form button:hover {
@@ -177,22 +172,20 @@ body {
   margin-bottom: 2rem;
 }
 
-.offer-heading{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
+.offer-heading {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 .divider {
-   
-    height: 2px; /* Set the height of the divider */
-    background-color: #fdcb58; /* Choose the color */
-    margin: 0 1rem; /* Add some spacing between the text and the line */
-    margin-bottom: 2rem;
-    width: 5%;
+  height: 2px; /* Set the height of the divider */
+  background-color: #fdcb58; /* Choose the color */
+  margin: 0 1rem; /* Add some spacing between the text and the line */
+  margin-bottom: 2rem;
+  width: 5%;
 }
 
-  
 .offer-cards {
   display: flex;
   justify-content: space-around;
@@ -201,17 +194,51 @@ body {
 }
 
 .card {
+    position: relative;
   background-color: #fff;
-  border-radius: 10px;
+  border-radius: 0px;
   overflow: hidden;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   flex-basis: 30%;
   margin-bottom: 1.5rem;
+  padding: 20px;
 }
 
+.card::before,
+.card::after {
+  position: absolute;
+  width: 133px;
+  height: 133px;
+  content: "";
+  opacity: 0;
+  transition: all 0.3s ease;
+  z-index: -1;
+
+  
+}
+.card::before {
+  left: 0px;
+  top: 0px;
+  border-left: 9px solid #fdcb58;
+  border-top: 9px solid #fdcb58;
+  
+}
+.card::after {
+  right: 0px;
+  bottom: 0px;
+  border-right: 9px solid #fdcb58;
+  border-bottom: 9px solid #fdcb58;
+  
+}
 .card:hover {
-  transform: translateY(-10px);
+    transform: translateY(-10px); /* Pop out the card slightly */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Increase shadow */
+  }
+.card:hover::before,
+.card:hover::after {
+  opacity: 1; 
+  
 }
 
 .card img {
@@ -260,8 +287,6 @@ footer {
   margin-top: 3rem;
 }
 
-
-
 @media (max-width: 868px) {
   .hero h1 {
     display: none;
@@ -270,15 +295,15 @@ footer {
   .search-form form {
     flex-direction: column;
     justify-content: center;
-    
   }
-  .date{
-    display:block;
+  .date {
+    display: block;
   }
 
   .offer-cards {
-    flex-direction: column;
-    flex-basis: 100%;
+    flex-direction: column; /* Stack cards vertically */
+    align-items: center; /* Center cards */
+    overflow-x: hidden;
   }
   .search-form input,
   .search-form button {

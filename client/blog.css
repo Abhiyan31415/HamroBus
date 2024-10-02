@@ -1,0 +1,285 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  
+  body {
+    font-family: "Arial", sans-serif;
+    background-color: #283f5e;
+  
+    line-height: 1.6;
+    padding: 0;
+    margin: 0;
+  }
+  
+  
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  
+  .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0rem 1rem; /* Reduced padding */
+      background-color: #fff;
+      height: auto;
+    }
+    
+    .navbar .logo img {
+      width: 100px;
+    }
+    
+    .nav-links {
+      list-style-type: none;
+      display: flex;
+    }
+    
+    .nav-links li {
+      margin: 0 1rem;
+    }
+    
+    .nav-links a {
+      text-decoration: none;
+      color: #283f5e;
+      font-weight: 500;
+    }
+    
+    .nav-links a:hover {
+      border-bottom: 2px solid #fdcb58;
+    }
+    
+    .register-btn {
+      background-color: #fdcb58;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      color: #283f5e;
+      font-weight: bold;
+    }
+    
+    .register-btn:hover {
+      background-color: #283f5e;
+      color: #fff;
+    }
+  
+  
+  .hamburger {
+    display: none;
+    font-size: 2rem;
+    cursor: pointer;
+  }
+  
+  
+  .drawer {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100%;
+    background-color: #fff;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+    transition: left 0.3s ease;
+    padding: 1.5rem;
+  }
+  
+  .drawer ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .drawer ul li {
+    margin: 1.5rem 0;
+  }
+  
+  .drawer ul li a {
+    text-decoration: none;
+    color: #283f5e;
+    font-weight: bold;
+  }
+  
+  .drawer-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #333;
+  }
+  .blog {
+    background-color: #fff;
+    padding: 40px 0;
+}
+
+.blog-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.blog-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 20px;
+    width: calc(33.333% - 20px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.blog-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.blog-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.blog-card h2 {
+    color: #283f5e;
+    font-size: 18px;
+    margin: 15px 0;
+}
+
+.blog-card p {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.read-more {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 15px;
+    background-color: #283f5e;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    color: #ffffff;
+}
+
+.read-more:hover {
+    background-color: #283f5e;
+}
+
+/* Responsive Styles */
+@media (max-width: 892px) {
+    .blog-card {
+        width: calc(50% - 20px);
+    }
+}
+
+@media (max-width: 768px) {
+    .blog-card {
+        width: 100%;
+    }
+
+    header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    nav ul {
+        flex-direction: column;
+        margin: 20px 0 0 0;
+    }
+
+    nav ul li {
+        margin: 10px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 24px;
+    }
+
+    .blog-card h2 {
+        font-size: 16px;
+    }
+
+    .blog-card p {
+        font-size: 13px;
+    }
+
+    .read-more {
+        padding: 8px 12px;
+    }
+}
+
+/* Footer Styles */
+footer {
+    background-color: #283f5e;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+@media (max-width: 1024px) {
+    .nav-links {
+      display: none;
+    }
+  
+    .hamburger {
+      display: block;
+    }
+  }
+  
+  .drawer.open {
+    left: 0;
+  }
+  @media (max-width: 400px) {
+  .drawer {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100%;
+    background-color: #fff;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+    transition: left 0.3s ease;
+    z-index: 1000;
+    padding: 2rem;
+  }
+  
+  .drawer ul {
+    list-style-type: none;
+  }
+  
+  .drawer ul li {
+    margin: 1.5rem 0;
+  }
+  
+  .drawer ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+  }
+  
+  .drawer-close {
+    font-size: 1.5rem;
+    cursor: pointer;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    color: #333;
+  }
+  
+  .hamburger {
+    display: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #333;
+  }
+}
