@@ -7,6 +7,7 @@
     <title>Hamro Bus - Start Your Adventure</title>
     <link rel="stylesheet" href="c-style.css" />
     <link rel="icon" href="assets/logo.png" />
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
   </head>
   <body>
     <header>
@@ -15,13 +16,13 @@
           <img src="assets/logo.png" alt="Hamro Bus Logo" />
         </div>
         <ul class="nav-links">
-          <li><a href="index.html">Home</a></li>
+          <li><a href="c-script.js">Home</a></li>
           <li><a href="blog.html">Blog</a></li>
           <li><a href="contact.html">Contact Us</a></li>
           <li><a href="faq.html">FAQ</a></li>
-          <li><a href="manage_ticket.html">Manage Ticket</a></li>
-          <li><a href="login.html">Login</a></li>
-          <li><a href="register.html" class="register-btn">Register</a></li>
+          <li><a href="manage.html">Manage Ticket</a></li>
+          <li><a href="../admin/login.html">Login</a></li>
+          <li><a href="../admin/register.html" class="register-btn">Register</a></li>
         </ul>
         <div class="hamburger" id="hamburger">☰</div>
       </nav>
@@ -56,6 +57,8 @@
                 placeholder="Enter city"
               />
             </div>
+            <i style="margin-top: 25.6px; color: black;" class="ph ph-arrows-left-right"></i>
+
             <div class="to">
               <span> To:</span>
               <input
@@ -70,7 +73,7 @@
               <input type="date" id="date" name="date" />
             </div>
 
-            <button type="submit">Search</button>
+            <button formaction="Search.html" type="submit">Search</button>
           </form>
         </div>
       </div>
@@ -105,8 +108,32 @@
             </p>
           </div>
         </div>
+        <div class="card">
+            <img src="assets/bus.jpg" alt="Offer Image" />
+            <div class="card-content">
+              <h3>Pokhara to Chitwan</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit
+              </p>
+            </div>
+          </div>
+          <div class="card">
+            <img src="assets/bus.jpg" alt="Offer Image" />
+            <div class="card-content">
+              <h3>Pokhara to Chitwan</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit
+              </p>
+            </div>
+          </div>
+          <div class="card">
+            <img src="assets/bus.jpg" alt="Offer Image" />
+            <div class="card-content">
+              <h3>Pokhara to Chitwan</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit
+              </p>
+            </div>
+          </div>
       </div>
-      <button class="view-all-btn">View All</button>
+      <button id="view-all"class="view-all-btn">View More</button>
     </section>
 
     <footer>
