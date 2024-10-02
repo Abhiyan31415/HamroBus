@@ -199,4 +199,8 @@
   .drawer.open {
     left: 0;
   }
-  
+  .chart-container {
+    width: 100%;
+    height: 400px; /* Set the height of the chart */
+    margin: 20px 0; /* Add some margin */
+}
