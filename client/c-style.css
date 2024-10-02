@@ -1,0 +1,371 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background-color: #f7f7f7;
+  color: #333;
+  line-height: 1.6;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0rem 1rem; /* Reduced padding */
+  background-color: #fff;
+  height: auto;
+}
+
+.navbar .logo img {
+  width: 100px;
+}
+
+.nav-links {
+  list-style-type: none;
+  display: flex;
+ 
+  
+}
+
+.nav-links li {
+  margin: 0 1rem;
+
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #283f5e;
+  font-weight: 500;
+}
+
+.nav-links a:hover {
+  border-bottom: 2px solid #fdcb58;
+}
+
+.register-btn {
+  background-color: #fdcb58;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  color: #283f5e;
+  font-weight: bold;
+}
+
+.register-btn:hover {
+  background-color: #283f5e;
+  color: #fff;
+}
+
+.hero {
+  background: url("assets/bus.jpg") no-repeat center center/cover;
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  position: relative;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.hero-content {
+  z-index: 1;
+}
+
+.hero h1 {
+  font-size: 40px;
+  letter-spacing: 1rem;
+  margin-bottom: 1px;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+  text-align: left;
+  color: #fdcb58;
+}
+
+.search-form {
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.search-form form {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-direction: row;
+  gap: 15px;
+  
+}
+
+.from {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+  color: #283f5e;
+}
+.to {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    color: #283f5e;
+}
+.date {
+    display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+  color: #283f5e;
+}
+.search-form input,
+.search-form button {
+  padding: 0.75rem;
+  /* margin: 0.5rem 0.5rem; */
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+.search-form input {
+  flex: 1;
+}
+
+.search-form button {
+  background-color: #fdcb58;
+  color: #283f5e;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 25.6px;
+  width: 17%;
+ 
+}
+
+.search-form button:hover {
+  background-color: #283f5e;
+  color: white;
+}
+
+.offers {
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+.offers h2 {
+  font-size: 2rem;
+  color: #283f5e;
+  margin-bottom: 2rem;
+}
+
+.offer-heading{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.divider {
+   
+    height: 2px; /* Set the height of the divider */
+    background-color: #fdcb58; /* Choose the color */
+    margin: 0 1rem; /* Add some spacing between the text and the line */
+    margin-bottom: 2rem;
+    width: 5%;
+}
+
+  
+.offer-cards {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  flex-basis: 30%;
+  margin-bottom: 1.5rem;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+}
+
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 1rem;
+  text-align: left;
+}
+
+.card-content h3 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.card-content p {
+  color: #666;
+  font-size: 1rem;
+}
+
+.view-all-btn {
+  margin-top: 2rem;
+  padding: 0.75rem 2rem;
+  background-color: #fdcb58;
+  color: #283f5e;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.view-all-btn:hover {
+  background-color: #283f5e;
+  color: white;
+}
+
+footer {
+  background-color: #283f5e;
+  color: #fff;
+  text-align: center;
+  padding: 1rem 0;
+  margin-top: 3rem;
+}
+
+
+
+@media (max-width: 868px) {
+  .hero h1 {
+    display: none;
+  }
+
+  .search-form form {
+    flex-direction: column;
+    justify-content: center;
+    
+  }
+  .date{
+    display:block;
+  }
+
+  .offer-cards {
+    flex-direction: column;
+    flex-basis: 100%;
+  }
+  .search-form input,
+  .search-form button {
+    width: 100%;
+    margin: 0.5rem 0;
+  }
+}
+
+/* @media (max-width: 480px) {
+  .hero {
+    height: 50vh;
+   
+  }
+
+  .hero h1 {
+    font-size: 1.5rem;
+  }
+
+  .offer-cards {
+    flex-basis: 100%;
+  }
+
+  .card {
+    flex-basis: 90%;
+    margin: 0 auto 1.5rem;
+  }
+
+  .search-form input,
+  .search-form button {
+    width: 100%;
+    margin: 0.5rem 0;
+  }
+} */
+
+.drawer {
+  position: fixed;
+  top: 0;
+  left: -250px;
+  width: 250px;
+  height: 100%;
+  background-color: #fff;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+  transition: left 0.3s ease;
+  z-index: 1000;
+  padding: 2rem;
+}
+
+.drawer ul {
+  list-style-type: none;
+}
+
+.drawer ul li {
+  margin: 1.5rem 0;
+}
+
+.drawer ul li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+}
+
+.drawer-close {
+  font-size: 1.5rem;
+  cursor: pointer;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  color: #333;
+}
+
+.hamburger {
+  display: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: #333;
+}
+
+@media (max-width: 1024px) {
+  .nav-links {
+    display: none;
+  }
+
+  .hamburger {
+    display: block;
+  }
+}
+
+.drawer.open {
+  left: 0;
+}
