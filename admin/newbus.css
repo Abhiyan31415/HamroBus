@@ -88,7 +88,6 @@
     
   }
   .d-body-menu-items{
-   
     width:100%;
     background-color:#283F5E;
     color:white;
@@ -101,12 +100,7 @@
     padding-top: 25px;
     padding-bottom: 25px;
   }
-  .linked{
-    list-style: none;
-    list-style-type: none;
-    text-decoration: none;
-    color:inherit
-  }
+  
  
   footer {
     background-color: #283f5e;
