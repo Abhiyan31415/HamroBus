@@ -66,10 +66,12 @@ document.getElementById("busForm").addEventListener("submit", function(event) {
       <button class="edit-btn" data-editing="false"><i class="fa fa-pen"></i></button>
       <button class="delete-btn"><i class="fa fa-trash"></i></button>
   `;
+  pushTableData();
 
   // Clear form fields after submission
   document.getElementById("busForm").reset();
   formContainer.style.display = "none";
+
 });
 
 // Handle Edit and Delete using Event Delegation
@@ -113,3 +115,50 @@ document.querySelector("table tbody").addEventListener("click", function(event) 
     row.remove(); // Remove the row
   }
 });
+
+
+
+
+
+
+function pushTableData() {
+  // Get the table rows
+  const table = document.querySelector("table tbody");
+  const rows = table.querySelectorAll("tr");
+
+  // Initialize an array to store row data
+  const tableData = [];
+
+  // Loop through each row and extract data
+  rows.forEach((row, index) => {
+    const cells = row.querySelectorAll("td:not(:last-child)"); // Exclude the actions column
+    const rowData = {
+      rowNumber: cells[0].innerText, // Assuming the first cell is the row number
+      busName: cells[1].innerText,
+      originLocation: cells[2].innerText,
+      destination: cells[3].innerText,
+      departureTime: cells[4].innerText,
+      seatCapacity: cells[5].innerText
+    };
+    
+    // Push row data to array
+    tableData.push(rowData);
+  });
+  console.log(tableData)
+
+  // Send the data to the server using fetch
+  fetch('./example', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(tableData)
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log('Data successfully sent to server:', data);
+    // Optionally, handle response or display success message to the user
+  })
+  .catch(error => {
+    console.error('Error sending data:', error);
+    // Optionally, handle errors or display an error message to the user
+  });
+}
