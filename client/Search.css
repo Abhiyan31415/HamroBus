@@ -296,6 +296,35 @@ footer {
   padding: 1rem;
   margin-top: 3rem;
 }
+.seat-map {
+  display: grid;
+  grid-template-columns: repeat(4, 50px);
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.seat {
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  background-color: lightblue;
+  border: 1px solid #000;
+  cursor: pointer;
+}
+
+.booked {
+  background-color: gray;
+  cursor: not-allowed;
+}
+
+.selected {
+  background-color: orange;
+}
+
+.available {
+  background-color: lightblue;
+}
 
 @media (max-width: 768px) {
   .drawer {
