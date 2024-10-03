@@ -61,50 +61,28 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function updateSelectedSeats(layoutId) {
   const seatLayout = document.getElementById(`seat-layout-${layoutId}`);
+  
+  // Get all selected seats in the current layout
   const selectedSeats = Array.from(
     seatLayout.querySelectorAll(".seat.selected")
-  ).map((seat) => seat.id);
+  ).map((seat) => seat.id); // Create an array of selected seat IDs
 
-  seatLayout.querySelector(`#selected-seats-${layoutId}`).textContent =
-    selectedSeats.join(", ");
+  // Update the displayed selected seats
+  const selectedSeatsElement = document.getElementById(`selected-seats-${layoutId}`);
+  if (selectedSeatsElement) {
+    selectedSeatsElement.textContent = selectedSeats.join(", ");
+  }
 
-  let farePerSeat = 1800;
-  let totalFare = farePerSeat * selectedSeats.length;
-  seatLayout.querySelector(`#fare-${layoutId}`).textContent = totalFare;
-  seatLayout.querySelector(`#total-amount-${layoutId}`).textContent = totalFare;
-  var from = document.getElementById("location").innerText;
-  var to = document.getElementById("destination").innerText;
-  var date = document.getElementById("time").innerText;
-  readData(totalFare, selectedSeats.length,from,to,date);
-}
+  // Update the total fare based on the number of selected seats
+  const farePerSeat = 1800; // Assuming the fare is NPR 1800 per seat
+  const totalFare = selectedSeats.length * farePerSeat;
+  const fareElement = document.getElementById(`fare-${layoutId}`);
+  const totalAmountElement = document.getElementById(`total-amount-${layoutId}`);
 
-function readData(totalFare, seat,from,to,date) { 
-  //var seat = document.getElementById("seat").value;
-  var fare = 1800;  // Adjusted fare per seat
-  var totalAmount = totalFare;  // Assuming seat holds the number of seats
-
-  var data = {
-    from: from,
-    to: to,
-    date: date,
-    seat: seat,
-    fare: fare,
-    totalAmount: totalAmount
-  };
-
-  console.log(data);
-  fetch("https://example.com/api/endpoint", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("Success:", data);
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-    });
+  if (fareElement) {
+    fareElement.textContent = farePerSeat;
+  }
+  if (totalAmountElement) {
+    totalAmountElement.textContent = totalFare;
+  }
 }
