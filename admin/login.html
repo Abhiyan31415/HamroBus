@@ -15,7 +15,7 @@
 
         </div>
 
-        <form id="loginForm" onsubmit="return validateLoginForm()">
+        <form id="loginForm" onsubmit="return validateLoginForm(event)">
             <div class="l-heading"><p class="l-heading-title">LOGIN</p></div>
 
             <div class="input-group">
@@ -30,6 +30,13 @@
 
             <button type="submit">Login</button>
         </form>
+    </div>
+    <div id="customAlert" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <p id="alertMessage"></p>
+            <a id="alertLink" href="#" target="_blank">Click here</a>
+        </div>
     </div>
 
     <script src="login.js"></script>

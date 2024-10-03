@@ -1,28 +1,32 @@
-const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
+const mongoose = require("mongoose");
+const connect = mongoose.connect(
+    "mongodb+srv://079bct008abhiyan:h8PyRbG3T1MlUE2P@cluster0.m1z1a.mongodb.net/"
+);
 
-const UserSchema = new mongoose.Schema({
-    username: { type: String, required: true, unique: true },
-    password: { type: String, required: true }
+connect
+    .then(() => {
+        console.log("Database Connected sucessfully");
+    })
+    .catch((err) => console.log(err));
+
+const LoginSchema = new mongoose.Schema({
+    username: {
+        type: String,
+        required: true,
+    },
+    email: {
+        type: String,
+        required: true,
+    },
+    contact: {
+        type: Number,
+        required: true,
+    },
+
+    password: {
+        type: String,
+        required: true,
+    },
 });
-
-UserSchema.pre('save', async function(next) {
-    if (this.isModified('password') || this.isNew) {
-        const salt = await bcrypt.genSalt(10);
-        this.password = await bcrypt.hash(this.password, salt);
-    }
-    next();
-});
-
-UserSchema.methods.comparePassword = function(password) {
-    return bcrypt.compare(password, this.password);
-};
-
-UserSchema.methods.generateJWT = function() {
-    return jwt.sign({ id: this._id, username: this.username }, 'your_jwt_secret', { expiresIn: '1h' });
-};
-
-const User = mongoose.model('User', UserSchema);
-
-module.exports = User;
+const collection = new mongoose.model("Users", LoginSchema);
+module.exports = collection;

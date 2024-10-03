@@ -18,13 +18,12 @@ function validateForm(event) {
     console.log(formData);
 
     // Send the form data to the server using fetch
-    fetch('', {
+    fetch('/api/register', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(formData)
-          // Convert form data to JSON
+        body: JSON.stringify(formData)  // Convert form data to JSON
     })
     .then(response => response.json())
     .then(data => {
