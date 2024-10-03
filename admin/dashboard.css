@@ -68,7 +68,7 @@ body {
   width: 100%;
   height: 100vh;
   position: relative;
- justify-content: space-between;
+  justify-content: space-between;
 }
 .d-body-menu {
   position: relative;
@@ -126,16 +126,18 @@ body {
   display: flex;
   align-items: center;
   flex-direction: column;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   width: 70%;
 }
 .combined-chart {
   display: flex;
   align-items: flex-end;
-  
+
   /* justify-content: flex-end; */
 }
-.first ,.second ,.third {
+.first,
+.second,
+.third {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -144,8 +146,8 @@ body {
   padding: 10px;
   margin: 10px;
 }
-.chart{
-  background-color: #283F5E;
+.chart {
+  background-color: #283f5e;
   width: 98%;
   display: flex;
   align-items: center;
@@ -153,7 +155,6 @@ body {
   flex-direction: row;
   margin: 10px;
   padding: 10px;
-
 }
 
 footer {
@@ -233,7 +234,7 @@ footer {
   color: #333;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1300px) {
   .nav-links {
     display: none;
   }
@@ -248,4 +249,122 @@ footer {
 
 .drawer.open {
   left: 0;
+}
+
+@media (max-width: 1300px) {
+  .d-body {
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+  }
+
+  .chart-container {
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+  }
+
+  .chart {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .combined-chart {
+    width: 100%;
+  }
+
+  .first,
+  .second,
+  .third {
+    flex-direction: column;
+    width: 100%;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .navbar .logo img {
+    width: 80px;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .d-body-menu {
+    display: none;
+  }
+
+  .chart-container {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .drawer {
+    width: 100%;
+    left: -100%; 
+  }
+
+  .drawer.open {
+    left: 0;
+  }
+
+  .register-btn {
+    width: 100%;
+  }
+
+  .chart {
+    flex-direction: column;
+  }
+}
+
+
+@media (max-width: 400px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar .logo img {
+    width: 70px;
+  }
+
+  .d-body {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .d-body-menu {
+    width: 100%;
+  }
+
+  .chart-container,
+  .chart {
+    flex-direction: column;
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  .add-details-btn,
+  input {
+    width: 90%;
+    margin: 10px auto;
+  }
+
+  .first,
+  .second,
+  .third {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
 }
