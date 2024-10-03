@@ -75,9 +75,10 @@ label {
 }
 
 input {
+    outline: none;
     width: 100%;
     padding: 10px;
-    border: 1px solid #ddd;
+    border: none;
     border-radius: 5px;
     font-size: 1em;
 }
