@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bus Details</title>
-    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="newbus.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
@@ -46,6 +46,7 @@
             
             <div class="d-body-menu-items" style="background-color:#ACD676"><a href='./newbus.html' class="linked">Add New Buses</a></div>
         </div>
+        <div class="table-form">
             <table class="table table-bordered">
                 <thead style="background-color: #283F5E; color:white">
                   <tr>
@@ -59,43 +60,26 @@
                   </tr>
                 </thead>
                 <tbody style="height:min-content">
-                    <tr>
-                        <td>1</td>
-                        <td>Deluxe</td>
-                        <td>Kathmandu</td>
-                        <td>Pokhara</td>
-                        <td>10:00 AM</td>
-                        <td>30</td>
-                        <td class="actions"><span style="margin-right: 10px;"><i class="fa fa-pen"></i></span><span><i class="fa fa-trash" aria-hidden="true"></i></span></td>
-                    </tr>
-                    <tr>
-                      <td>1</td>
-                      <td>Deluxe</td>
-                      <td>Kathmandu</td>
-                      <td>Pokhara</td>
-                      <td>10:00 AM</td>
-                      <td>30</td>
-                      <td class="actions"><span style="margin-right: 10px;"><i class="fa fa-pen"></i></span><span><i class="fa fa-trash" aria-hidden="true"></i></span></td>
-                  </tr>
-                    <tr><td colspan=7 class="button-row"><div><button>Add details</button></div>
-                    <!-- Form for adding new bus details -->
-<div class="form-container">
-  <form id="busForm">
-      <input type="text" id="busName" placeholder="Bus Name" required>
-      <input type="text" id="originLocation" placeholder="Origin Location" required>
-      <input type="text" id="destination" placeholder="Destination" required>
-      <input type="time" id="departureTime" required>
-      <input type="number" id="seatCapacity" placeholder="Seat Capacity" required>
-      <button type="submit">Add Bus</button>
-  </form>
-</div>
-
-                    
-                    
-                    </td></tr>
                 </tbody>
+               
+                    <!-- Form for adding new bus details -->
+  
               </table>
-              
+              <div>
+              <div style="display:flex; width:100%; align-items: flex-end;"><button class="add-details-btn" id="addDetailsBtn">Add details</button></div>
+              <div class="form-container" id="formContainer">
+
+                <form id="busForm">
+                    <input type="text" id="busName" placeholder="Bus Name" required>
+                    <input type="text" id="originLocation" placeholder="Origin Location" required>
+                    <input type="text" id="destination" placeholder="Destination" required>
+                    <input type="time" id="departureTime" required>
+                    <input type="number" id="seatCapacity" placeholder="Seat Capacity" required>
+                    <button type="submit" id="addBus">Add Bus</button>
+                </form>
+              </div>
+              </div>
+              </div>
       </div>
   <script src="newbus.js"></script>
 </body>

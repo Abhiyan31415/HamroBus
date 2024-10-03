@@ -131,43 +131,108 @@ padding: 10px 20px;
 border: none;
 cursor: pointer;
 }
-
 .button-row{
+  text-align: right;
+  justify-content: space-around;
+}
+.table-form{
+  display: flex;
+  flex-direction: column;
   width:100%;
+  max-width: 100%;
 }
+.edit-btn{
+  border:none;
+  background-color: white;
 
-      .add-details-btn {
-          display: inline-block;
-          padding: 10px 20px;
-          background-color: #4CAF50;
-          color: white;
-          border: none;
-          text-decoration: none;
-          border-radius: 4px;
-          margin: 20px 0;
-      }
-
-      .add-details-btn:hover {
-          background-color: #45a049;
-      }
-
-
-footer {
-  background-color: #283f5e;
-  color: #fff;
-  text-align: center;
-  padding: 1rem 0;
-  margin-top: 3rem;
+}
+.delete-btn{
+  border:none;
+  background-color: white;
 }
 
 
-/* @media (max-width: 480px) {
-  .hero {
-    height: 50vh;
-   
+        .add-details-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color:  #283f5e;
+            color: white;
+            border: none;
+            text-decoration: none;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+
+        .add-details-btn:hover {
+            background-color:  #283f3e;
+        }
+  .form-container{
+    display: none;
+  }
+ 
+  footer {
+    background-color: #283f5e;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: 3rem;
   }
 
-  .hero h1 {
+  
+  /* @media (max-width: 480px) {
+    .hero {
+      height: 50vh;
+     
+    }
+  
+    .hero h1 {
+      font-size: 1.5rem;
+    }
+  
+    .offer-cards {
+      flex-basis: 100%;
+    }
+  
+    .card {
+      flex-basis: 90%;
+      margin: 0 auto 1.5rem;
+    }
+  
+    .search-form input,
+    .search-form button {
+      width: 100%;
+      margin: 0.5rem 0;
+    }
+  } */
+  
+  .drawer {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100%;
+    background-color: #fff;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+    transition: left 0.3s ease;
+    z-index: 1000;
+    padding: 2rem;
+  }
+  
+  .drawer ul {
+    list-style-type: none;
+  }
+  
+  .drawer ul li {
+    margin: 1.5rem 0;
+  }
+  
+  .drawer ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+  }
+  
+  .drawer-close {
     font-size: 1.5rem;
   }
 
@@ -185,7 +250,7 @@ footer {
     width: 100%;
     margin: 0.5rem 0;
   }
-} */
+*/
 
 .drawer {
   position: fixed;
