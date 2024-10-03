@@ -36,6 +36,7 @@ document.getElementById("busForm").addEventListener("submit", function(event) {
   const cell5 = newRow.insertCell(4);
   const cell6 = newRow.insertCell(5);
   const cell7 = newRow.insertCell(6);
+  console.log(cell7,cell1,cell2,cell3,cell4,cell5,cell6);
 
   // Fill cells with form data
   const rowCount = table.rows.length - 1; // Adjust for 0-based index
