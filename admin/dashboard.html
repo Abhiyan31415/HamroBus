@@ -1,59 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard</title>
-    <link rel="stylesheet" href="dashboard.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> 
-</head>
-<body>
+    <link rel="stylesheet" href="dashboard.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
     <header>
-        <nav class="navbar">
-          <div class="logo">
-            <img src="resources/hamro.png" alt="Hamro Bus Logo" />
-          </div>
-          <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="blog.html">Blog</a></li>
-            <li><a href="contact.html">Contact Us</a></li>
-            <li><a href="faq.html">FAQ</a></li>
-            <li><a href="manage_ticket.html">Manage Ticket</a></li>
-            <li><a href="login.html">Login</a></li>
-            <li><a href="register.html" class="register-btn">Register</a></li>
-          </ul>
-          <div class="hamburger" id="hamburger">☰</div>
-        </nav>
-        <div class="drawer" id="drawer">
-          <div class="drawer-close" id="drawer-close">✕</div>
-          <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="./dashboard.html">Dashboard</a></li>
-            <li><a href="./newbus.html">Add New Buses</a></li>
-            <li><a href="#">Blog</a></li>
-            <li><a href="#">Contact Us</a></li>
-            <li><a href="#">FAQ</a></li>
-            <li><a href="#">Manage Ticket</a></li>
-            <li><a href="#">Login</a></li>
-            <li><a href="#" class="register-btn">Register</a></li>
-          </ul>
+      <nav class="navbar">
+        <div class="logo">
+          <img src="resources/hamro.png" alt="Hamro Bus Logo" />
         </div>
-      </header>
-      <div class="d-body">
-        <div class="d-body-menu">
-            <div class="d-body-menu-items" style="background-color:#ACD676"><a href='./dashboard.html' class="linked">Dashboard</a></div>
-            <div class="d-body-menu-items"><a href='./newbus.html' class="linked">Add New Buses</a></div>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="manage_ticket.html">Manage Ticket</a></li>
+          <li><a href="login.html">Login</a></li>
+          <li><a href="register.html" class="register-btn">Register</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger">☰</div>
+      </nav>
+      <div class="drawer" id="drawer">
+        <div class="drawer-close" id="drawer-close">✕</div>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="./dashboard.html">Dashboard</a></li>
+          <li><a href="./newbus.html">Add New Buses</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Manage Ticket</a></li>
+          <li><a href="#">Login</a></li>
+          <li><a href="#" class="register-btn">Register</a></li>
+        </ul>
+      </div>
+    </header>
+    <div class="d-body">
+      <div class="d-body-menu">
+        <div class="d-body-menu-items" style="background-color: #acd676">
+          <a href="./dashboard.html" class="linked">Dashboard</a>
         </div>
-        <div>
-          <div class="chart-container">
-            <canvas id="myDoughnutChart"></canvas>
-        </div>
-        
-        
+        <div class="d-body-menu-items">
+          <a href="./newbus.html" class="linked">Add New Buses</a>
         </div>
       </div>
-  <script src="dashboard.js"></script>
-
-
-</body>
+      <div class="combined-chart">
+        <div class="chart-container" style="background-color: #E4F1D3;">
+          <div class="first">
+            <div style="font-size: 16px;">300 Tickets Booked</div>
+            <canvas id="myDoughnutChart" class="canv"></canvas></div>
+          <div class="second"> <div style="font-size: 16px;">200 Buses In Operation</div><canvas id="myDoughnutChart2" class="canv"></canvas></div>
+          <div class="third"> <div style="font-size: 16px;">450 Number Of Cities</div> <canvas id="myDoughnutChart3"class="canv"></canvas></div>
+        </div>
+        <div class="chart">
+          <div style="color: #ffffff;font-size: 32px;">2400 Registered Users</div>
+          <canvas id="myDoughnutChart4" class="s-chart"></canvas>
+        </div>
+      </div>
+    </div>
+    <script src="dashboard.js"></script>
+  </body>
 </html>
