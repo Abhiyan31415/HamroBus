@@ -186,9 +186,13 @@
     color: #333;
   }
   
+  
   @media (max-width: 1024px) {
     .nav-links {
       display: none;
+    }
+    .d-body-menu{
+      display:none;
     }
   
     .hamburger {

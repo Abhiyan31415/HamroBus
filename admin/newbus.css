@@ -106,14 +106,34 @@
     background-color: #000000;
   }
   
-  .content-table{
-    width:100%;
+  .divtable{
+    width:75%;
   }
+  
   .table table-bordered{
     
     width: 100%;
     border: 10px solid black;
-    
+  }
+  table tbody tr {
+    height: 40px; /* Adjust this value as needed */
+}
+.button-row {
+  display: flex;
+  justify-content: flex-end; /* Aligns the button to the right */
+  padding-right: 10px; /* Optional: Adds padding from the right edge */
+}
+
+.button-row button {
+  background-color: #283F5E;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}
+  
+  .button-row{
+    width:100%;
   }
 
         .add-details-btn {
@@ -217,6 +237,9 @@
   
     .hamburger {
       display: block;
+    }
+    .d-body-menu{
+      display:none;
     }
   }
   
