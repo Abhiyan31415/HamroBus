@@ -77,7 +77,22 @@
                       <td>30</td>
                       <td class="actions"><span style="margin-right: 10px;"><i class="fa fa-pen"></i></span><span><i class="fa fa-trash" aria-hidden="true"></i></span></td>
                   </tr>
-                    <tr><td colspan=7 class="button-row"><div><button>Add details</button></div></td></tr>
+                    <tr><td colspan=7 class="button-row"><div><button>Add details</button></div>
+                    <!-- Form for adding new bus details -->
+<div class="form-container">
+  <form id="busForm">
+      <input type="text" id="busName" placeholder="Bus Name" required>
+      <input type="text" id="originLocation" placeholder="Origin Location" required>
+      <input type="text" id="destination" placeholder="Destination" required>
+      <input type="time" id="departureTime" required>
+      <input type="number" id="seatCapacity" placeholder="Seat Capacity" required>
+      <button type="submit">Add Bus</button>
+  </form>
+</div>
+
+                    
+                    
+                    </td></tr>
                 </tbody>
               </table>
               
