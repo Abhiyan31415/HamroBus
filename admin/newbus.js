@@ -144,10 +144,10 @@ function pushTableData() {
     // Push row data to array
     tableData.push(rowData);
   });
-  console.log(tableData)
+  console.log(JSON.stringify(tableData));
 
   // Send the data to the server using fetch
-  fetch('./example', {
+  fetch('//example//', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(tableData)
