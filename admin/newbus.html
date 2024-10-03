@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Bus Details</title>
     <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
     <header>
@@ -39,11 +41,36 @@
       <div class="d-body">
         <div class="d-body-menu">
             <div class="d-body-menu-items"><a href='./dashboard.html' class="linked">Dashboard</a></div>
+            
             <div class="d-body-menu-items" style="background-color:#ACD676"><a href='./newbus.html' class="linked">Add New Buses</a></div>
         </div>
-        <div>
-
-        </div>
+        <div style="width:70%">
+            <table class="table table-bordered" style="border-width:5px">
+                <thead style="background-color: #283F5E; color:white">
+                  <tr>
+                    <th>No.</th>
+                    <th>Bus Name</th>
+                    <th>Origin Location</th>
+                    <th>Destination</th>
+                    <th>Departure Time</th>
+                    <th>Seat Capacity</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody style="height:min-content">
+                    <tr>
+                        <td>1</td>
+                        <td>Deluxe</td>
+                        <td>Kathmandu</td>
+                        <td>Pokhara</td>
+                        <td>10:00 AM</td>
+                        <td>30</td>
+                        <td class="actions"><span style="margin-right: 10px;"><i class="fa fa-pen"></i></span><span><i class="fa fa-trash" aria-hidden="true"></i></span></td>
+                    </tr>
+                </tbody>
+              </table>
+              <button>Add details</button>
+            </div>
       </div>
   <script src="dashboard.js"></script>
 </body>

@@ -67,15 +67,16 @@
   }
   .d-body{
     display:flex;
-    flex-direction:row;
+    direction : row;
     width:100%;
+    flex-direction:row;
     height:100vh;
 
   }
   .d-body-menu{
     display:flex;
     flex-direction:column;
-    width:30%;
+    width:25%;
     background-color:#283F5E;
     
         color:white;
@@ -100,6 +101,35 @@
     padding-top: 25px;
     padding-bottom: 25px;
   }
+  
+  .hh{
+    background-color: #000000;
+  }
+  
+  .content-table{
+    width:100%;
+  }
+  .table table-bordered{
+    
+    width: 100%;
+    border: 10px solid black;
+    
+  }
+
+        .add-details-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            text-decoration: none;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+
+        .add-details-btn:hover {
+            background-color: #45a049;
+        }
   
  
   footer {
@@ -192,5 +222,9 @@
   
   .drawer.open {
     left: 0;
+  }
+  @media(max-width:700px){
+
+
   }
   
