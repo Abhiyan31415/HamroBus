@@ -20,3 +20,12 @@ document.querySelectorAll('.view-seats-btn').forEach(button => {
         alert('View seats functionality to be implemented.');
     });
 });
+// Handle 'From' dropdown button click
+document.getElementById('dropdown-btn').addEventListener('click', function() {
+    document.getElementById('from').focus(); // Focus on the input field
+  });
+  
+  // Handle 'To' dropdown button click
+  document.getElementById('dropdown-btn-to').addEventListener('click', function() {
+    document.getElementById('to').focus(); // Focus on the input field
+  });
