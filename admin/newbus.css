@@ -34,13 +34,10 @@ body {
 .nav-links {
   list-style-type: none;
   display: flex;
- 
-  
 }
 
 .nav-links li {
   margin: 0 1rem;
-
 }
 
 .nav-links a {
@@ -65,35 +62,34 @@ body {
   background-color: #283f5e;
   color: #fff;
 }
-.d-body{
-  display:flex;
-  direction : row;
-  width:100%;
-  flex-direction:row;
-  height:100vh;
-
+.d-body {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  justify-content: space-between;
 }
-.d-body-menu{
-  display:flex;
-  flex-direction:column;
-  width:25%;
-  background-color:#283F5E;
-  
-      color:white;
-      align-items: center;
-      font-family: Arial;
+.d-body-menu {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  background-color: #283f5e;
+  color: white;
+  align-items: center;
+  font-family: Arial;
   font-size: 24px;
   font-weight: 400;
   line-height: 29.05px;
   text-align: center;
-  
 }
-.d-body-menu-items{
-  width:100%;
-  background-color:#283F5E;
-  color:white;
-      align-items: center;
-      font-family: Arial;
+.d-body-menu-items {
+  width: 100%;
+  background-color: #283f5e;
+  color: white;
+  align-items: center;
+  font-family: Arial;
   font-size: 24px;
   font-weight: 400;
   line-height: 29.05px;
@@ -101,85 +97,100 @@ body {
   padding-top: 25px;
   padding-bottom: 25px;
 }
+.linked {
+  list-style: none;
+  list-style-type: none;
+  text-decoration: none;
+  color: inherit;
+}
 
-.hh{
+.hh {
   background-color: #000000;
 }
 
-.divtable{
-  width:75%;
+.divtable {
+  width: 75%;
+}
+.table-bordered {
+  width: 100%;
+  border: 2px solid black;
+  border-collapse: collapse;
+  box-sizing: border-box;
+  table-layout: fixed; /* Ensures the table has a fixed layout */
 }
 
-.table table-bordered{
-  
-  width: 100%;
-  border: 10px solid black;
+.table-bordered th, .table-bordered td {
+  padding: 10px; /* Add padding for better readability */
+  text-align: left;
+  word-wrap: break-word; /* Ensure long content wraps within the cell */
 }
+
+
 table tbody tr {
   height: 40px; /* Adjust this value as needed */
 }
 .button-row {
-display: flex;
-justify-content: flex-end; /* Aligns the button to the right */
-padding-right: 10px; /* Optional: Adds padding from the right edge */
+  display: flex;
+  justify-content: flex-end; /* Aligns the button to the right */
+  padding-right: 10px; /* Optional: Adds padding from the right edge */
 }
 
 .button-row button {
-background-color: #283F5E;
-color: white;
-padding: 10px 20px;
-border: none;
-cursor: pointer;
+  background-color: #283f5e;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
 }
-.button-row{
+.button-row {
   text-align: right;
   justify-content: space-around;
 }
-.table-form{
+.table-form {
   display: flex;
   flex-direction: column;
-  width:100%;
-  max-width: 100%;
+  width: 70%;
 }
-.edit-btn{
-  border:none;
+.edit-btn {
+  border: none;
   background-color: white;
-
 }
-.delete-btn{
-  border:none;
+.delete-btn {
+  border: none;
   background-color: white;
 }
 
+.add-details-btn {
+  display: flex;
+  padding: 10px 20px;
+  background-color: #283f5e;
+  color: white;
+  border: none;
+  text-decoration: none;
+  border-radius: 4px;
+  margin: 20px 0;
+  /* width: 100%; */
+  margin: 30px;
+}
+input{
+  width: 70%;
+}
+.add-details-btn:hover {
+  background-color: #283f3e;
+}
+.form-container {
+  display: none;
+}
 
-        .add-details-btn {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color:  #283f5e;
-            color: white;
-            border: none;
-            text-decoration: none;
-            border-radius: 4px;
-            margin: 20px 0;
-        }
+footer {
+  background-color: #283f5e;
+  color: #fff;
+  text-align: center;
+  padding: 1rem 0;
+  margin-top: 3rem;
+}
 
-        .add-details-btn:hover {
-            background-color:  #283f3e;
-        }
-  .form-container{
-    display: none;
-  }
- 
-  footer {
-    background-color: #283f5e;
-    color: #fff;
-    text-align: center;
-    padding: 1rem 0;
-    margin-top: 3rem;
-  }
-
-  
-  /* @media (max-width: 480px) {
+/* @media (max-width: 480px) {
     .hero {
       height: 50vh;
      
@@ -204,55 +215,53 @@ cursor: pointer;
       margin: 0.5rem 0;
     }
   } */
-  
-  .drawer {
-    position: fixed;
-    top: 0;
-    left: -250px;
-    width: 250px;
-    height: 100%;
-    background-color: #fff;
-    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
-    transition: left 0.3s ease;
-    z-index: 1000;
-    padding: 2rem;
-  }
-  
-  .drawer ul {
-    list-style-type: none;
-  }
-  
-  .drawer ul li {
-    margin: 1.5rem 0;
-  }
-  
-  .drawer ul li a {
-    text-decoration: none;
-    color: #333;
-    font-weight: 500;
-  }
-  
-  .drawer-close {
-    font-size: 1.5rem;
-  }
-
-  .offer-cards {
-    flex-basis: 100%;
-  }
-
-  .card {
-    flex-basis: 90%;
-    margin: 0 auto 1.5rem;
-  }
-
-  .search-form input,
-  .search-form button {
-    width: 100%;
-    margin: 0.5rem 0;
-  }
-*/
 
 .drawer {
+  position: fixed;
+  top: 0;
+  left: -250px;
+  width: 250px;
+  height: 100%;
+  background-color: #fff;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+  transition: left 0.3s ease;
+  z-index: 1000;
+  padding: 2rem;
+}
+
+.drawer ul {
+  list-style-type: none;
+}
+
+.drawer ul li {
+  margin: 1.5rem 0;
+}
+
+.drawer ul li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+}
+
+.drawer-close {
+  font-size: 1.5rem;
+}
+
+.offer-cards {
+  flex-basis: 100%;
+}
+
+.card {
+  flex-basis: 90%;
+  margin: 0 auto 1.5rem;
+}
+
+.search-form input,
+.search-form button {
+  width: 100%;
+  margin: 0.5rem 0;
+}
+*/ .drawer {
   position: fixed;
   top: 0;
   left: -250px;
@@ -303,15 +312,13 @@ cursor: pointer;
   .hamburger {
     display: block;
   }
-  .d-body-menu{
-    display:none;
+  .d-body-menu {
+    display: none;
   }
 }
 
 .drawer.open {
   left: 0;
 }
-@media(max-width:700px){
-
-
+@media (max-width: 700px) {
 }
