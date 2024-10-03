@@ -9,8 +9,9 @@
 </head>
 <body>
     <div class="container">
-        <form id="registrationForm" onsubmit="return validateForm()">
+        <form id="registrationForm" onsubmit="return validateForm(event)">
             <div class="i-1"><p class="heading-1">Registration Form</p></div>
+
             <div class="input-group">
                 <div><i class="fa fa-user"></i></div>
                 <div><input type="text" id="username" name="username" required placeholder="Username"></div>
@@ -18,22 +19,22 @@
 
             <div class="input-group">
                 <div><i class="fa fa-envelope"></i></div>
-                <div><input type="text" id="username" name="username" required placeholder="Email"></div>
+                <div><input type="email" id="email" name="email" required placeholder="Email"></div>
             </div>
 
             <div class="input-group">
                 <div><i class="fa fa-phone"></i></div>
-                <div><input type="text" id="username" name="username" required placeholder="Contact"></div>
+                <div><input type="text" id="contact" name="contact" required placeholder="Contact"></div>
             </div>
 
             <div class="input-group">
                 <div><i class="fa fa-lock"></i></div>
-                <div><input type="text" id="username" name="username" required placeholder="Enter Password"></div>
+                <div><input type="password" id="password" name="password" required placeholder="Enter Password"></div>
             </div>
 
             <div class="input-group">
-                <div></div>
-                <div><input type="text" id="username" name="username" required placeholder="Re-Enter Password"></div>
+                <div><i class="fa fa-lock"></i></div>
+                <div><input type="password" id="confirmPassword" name="confirmPassword" required placeholder="Re-Enter Password"></div>
             </div>
 
             <button type="submit">Register</button>
@@ -41,10 +42,11 @@
         
         <div class="logo">
             <img src="/admin/resources/hamro.png" alt="Hamro Bus Logo">
-            
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="./register.js">
+        
+    </script>
 </body>
 </html>
