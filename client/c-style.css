@@ -111,6 +111,7 @@ body {
   justify-content: center;
   flex-direction: row;
   gap: 15px;
+  max-height: 300px;
 }
 
 .from {
@@ -127,6 +128,7 @@ body {
   text-align: left;
   color: #283f5e;
 }
+
 .date {
   display: flex;
   flex-direction: column;
@@ -295,6 +297,11 @@ footer {
   .search-form form {
     flex-direction: column;
     justify-content: center;
+    height: 100%;
+    gap: 0;
+  }
+  input{
+    max-height: 20px;
   }
   .date {
     display: block;
@@ -309,6 +316,9 @@ footer {
   .search-form button {
     width: 100%;
     margin: 0.5rem 0;
+  }
+  i{
+    display: none;
   }
 }
 

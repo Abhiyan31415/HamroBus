@@ -29,13 +29,13 @@
       <div class="drawer" id="drawer">
         <div class="drawer-close" id="drawer-close">✕</div>
         <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Blog</a></li>
-          <li><a href="#">Contact Us</a></li>
-          <li><a href="#">FAQ</a></li>
-          <li><a href="#">Manage Ticket</a></li>
-          <li><a href="#">Login</a></li>
-          <li><a href="#" class="register-btn">Register</a></li>
+            <li><a href="c-index.html">Home</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="manage.html">Manage Ticket</a></li>
+            <li><a href="../admin/login.html">Login</a></li>
+            <li><a href="../admin/register.html" class="register-btn">Register</a></li>
         </ul>
       </div>
     </header>
@@ -45,34 +45,62 @@
       <div class="container">
         <h6 style="color: rgb(189, 182, 182);">3 results found</h6>
         <div class="search-form">
-          <form>
-            <div class="from">
-              <span> From:</span>
-              <input
-                type="text"
-                id="from"
-                name="from"
-                placeholder="Enter city"
-              />
-            </div>
-            <i style="margin-top: 25.6px;" class="ph ph-arrows-left-right"></i>
-            <div class="to">
-              <span> To:</span>
-              <input
-                type="text"
-                id="to"
-                name="to"
-                placeholder="Enter destination"
-              />
-            </div>
-            <div class="date">
-              <span> Date</span>
-              <input type="date" id="date" name="date" />
-            </div>
-
-            <button type="submit">Search</button>
-          </form>
-        </div>
+            <form>
+              <div class="from">
+                <span>From:</span>
+                <!-- <div style="display: flex; align-items: center;"> -->
+                  <input
+                    type="text"
+                    id="from"
+                    name="from"
+                    placeholder="Enter city"
+                    list="city-list"
+                   
+                  />
+                 
+                <!-- </div> -->
+          
+                <!-- Datalist for providing a dropdown-like suggestion -->
+                <datalist id="city-list">
+                  <option value="Kathmandu"></option>
+                  <option value="Pokhara"></option>
+                  <option value="Biratnagar"></option>
+                  <option value="Lalitpur"></option>
+                  <option value="Bharatpur"></option>
+                  <option value="Birgunj"></option>
+                  <option value="Dharan"></option>
+                  <option value="Butwal"></option>
+                  <option value="Hetauda"></option>
+                  <option value="Janakpur"></option>
+                  <!-- Add more cities as necessary -->
+                </datalist>
+              </div>
+          
+              <i style="margin-top: 25.6px; color: black;" class="ph ph-arrows-left-right"></i>
+          
+              <div class="to">
+                <span>To:</span>
+                <!-- <div style="display: flex; align-items: center;"> -->
+                  <input
+                    type="text"
+                    id="to"
+                    name="to"
+                    placeholder="Enter destination"
+                    list="city-list"
+                 
+                  />
+                
+                <!-- </div> -->
+              </div>
+          
+              <div class="date">
+                <span>Date:</span>
+                <input type="date" id="date" name="date" />
+              </div>
+          
+              <button formaction="Search.html" type="submit">Search</button>
+            </form>
+          </div>
         <div class="bus-listing">
           <div class="para">
             <div class="bus-item">
