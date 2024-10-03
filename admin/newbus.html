@@ -47,40 +47,43 @@
             <div class="d-body-menu-items" style="background-color:#ACD676"><a href='./newbus.html' class="linked">Add New Buses</a></div>
         </div>
         <div class="table-form">
-            <table class="table table-bordered">
-                <thead style="background-color: #283F5E; color:white">
-                  <tr>
-                    <th>No.</th>
-                    <th>Bus Name</th>
-                    <th>Origin Location</th>
-                    <th>Destination</th>
-                    <th>Departure Time</th>
-                    <th>Seat Capacity</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody style="height:min-content">
-                </tbody>
-               
-                    <!-- Form for adding new bus details -->
-  
-              </table>
-              <div>
-              <div style="display:flex; width:100%; align-items: flex-end;"><button class="add-details-btn" id="addDetailsBtn">Add details</button></div>
-              <div class="form-container" id="formContainer">
-
-                <form id="busForm">
-                    <input type="text" id="busName" placeholder="Bus Name" required>
-                    <input type="text" id="originLocation" placeholder="Origin Location" required>
-                    <input type="text" id="destination" placeholder="Destination" required>
-                    <input type="time" id="departureTime" required>
-                    <input type="number" id="seatCapacity" placeholder="Seat Capacity" required>
-                    <button type="submit" id="addBus">Add Bus</button>
-                </form>
-              </div>
-              </div>
-              </div>
-      </div>
+          <!-- Wrapping the table in a scrollable container -->
+          <div class="table-wrapper">
+            <table class="table-bordered">
+              <thead style="background-color: #283F5E; color:white">
+                <tr>
+                  <th>No.</th>
+                  <th>Bus Name</th>
+                  <th>Origin Location</th>
+                  <th>Destination</th>
+                  <th>Departure Time</th>
+                  <th>Seat Capacity</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody style="height:min-content">
+                <!-- Table rows will be dynamically added here -->
+              </tbody>
+            </table>
+          </div>
+          <!-- Add details button and form for adding new bus details -->
+          <div>
+            <div style="display:flex; width:100%; align-items: flex-end;flex-direction: row;justify-content: end;">
+              <button class="add-details-btn" id="addDetailsBtn">Add details</button>
+            </div>
+            <div class="form-container" id="formContainer">
+              <form id="busForm">
+                <input type="text" id="busName" placeholder="Bus Name" required>
+                <input type="text" id="originLocation" placeholder="Origin Location" required>
+                <input type="text" id="destination" placeholder="Destination" required>
+                <input type="time" id="departureTime" required>
+                <input type="number" id="seatCapacity" placeholder="Seat Capacity" required>
+                <button type="submit" id="addBus">Add Bus</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        
   <script src="newbus.js"></script>
 </body>
 </html>
