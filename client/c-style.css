@@ -181,9 +181,9 @@ body {
   justify-content: center;
 }
 .divider {
-  height: 2px; /* Set the height of the divider */
-  background-color: #fdcb58; /* Choose the color */
-  margin: 0 1rem; /* Add some spacing between the text and the line */
+  height: 2px;
+  background-color: #fdcb58;
+  margin: 0 1rem;
   margin-bottom: 2rem;
   width: 5%;
 }
@@ -196,7 +196,7 @@ body {
 }
 
 .card {
-    position: relative;
+  position: relative;
   background-color: #fff;
   border-radius: 0px;
   overflow: hidden;
@@ -216,31 +216,26 @@ body {
   opacity: 0;
   transition: all 0.3s ease;
   z-index: -1;
-
-  
 }
 .card::before {
   left: 0px;
   top: 0px;
   border-left: 9px solid #fdcb58;
   border-top: 9px solid #fdcb58;
-  
 }
 .card::after {
   right: 0px;
   bottom: 0px;
   border-right: 9px solid #fdcb58;
   border-bottom: 9px solid #fdcb58;
-  
 }
 .card:hover {
-    transform: translateY(-10px); /* Pop out the card slightly */
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Increase shadow */
-  }
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
 .card:hover::before,
 .card:hover::after {
-  opacity: 1; 
-  
+  opacity: 1;
 }
 
 .card img {
@@ -300,7 +295,7 @@ footer {
     height: 100%;
     gap: 0;
   }
-  input{
+  input {
     max-height: 20px;
   }
   .date {
@@ -308,8 +303,8 @@ footer {
   }
 
   .offer-cards {
-    flex-direction: column; /* Stack cards vertically */
-    align-items: center; /* Center cards */
+    flex-direction: column;
+    align-items: center;
     overflow-x: hidden;
   }
   .search-form input,
@@ -317,7 +312,7 @@ footer {
     width: 100%;
     margin: 0.5rem 0;
   }
-  i{
+  i {
     display: none;
   }
 }

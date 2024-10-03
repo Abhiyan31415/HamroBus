@@ -1,11 +1,9 @@
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: Arial, Helvetica, sans-serif;
 }
-
 
 body {
   font-family: "Arial", sans-serif;
@@ -16,7 +14,6 @@ body {
   margin: 0;
 }
 
-
 .container {
   width: 100%;
   max-width: 1200px;
@@ -25,57 +22,55 @@ body {
 }
 
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0rem 1rem; /* Reduced padding */
-    background-color: #fff;
-    height: auto;
-  }
-  
-  .navbar .logo img {
-    width: 100px;
-  }
-  
-  .nav-links {
-    list-style-type: none;
-    display: flex;
-  }
-  
-  .nav-links li {
-    margin: 0 1rem;
-  }
-  
-  .nav-links a {
-    text-decoration: none;
-    color: #283f5e;
-    font-weight: 500;
-  }
-  
-  .nav-links a:hover {
-    border-bottom: 2px solid #fdcb58;
-  }
-  
-  .register-btn {
-    background-color: #fdcb58;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    color: #283f5e;
-    font-weight: bold;
-  }
-  
-  .register-btn:hover {
-    background-color: #283f5e;
-    color: #fff;
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0rem 1rem;
+  background-color: #fff;
+  height: auto;
+}
 
+.navbar .logo img {
+  width: 100px;
+}
+
+.nav-links {
+  list-style-type: none;
+  display: flex;
+}
+
+.nav-links li {
+  margin: 0 1rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #283f5e;
+  font-weight: 500;
+}
+
+.nav-links a:hover {
+  border-bottom: 2px solid #fdcb58;
+}
+
+.register-btn {
+  background-color: #fdcb58;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  color: #283f5e;
+  font-weight: bold;
+}
+
+.register-btn:hover {
+  background-color: #283f5e;
+  color: #fff;
+}
 
 .hamburger {
   display: none;
   font-size: 2rem;
   cursor: pointer;
 }
-
 
 .drawer {
   position: fixed;
@@ -112,7 +107,6 @@ body {
   cursor: pointer;
   color: #333;
 }
-
 
 .search-form {
   background-color: #fff;
@@ -193,7 +187,6 @@ body {
   background-color: #ffffff;
   padding: 20px;
   border-radius: 8px;
-
 }
 
 .bus-info {
@@ -230,7 +223,7 @@ body {
 
 .location {
   font-size: 1rem;
-  color: #283F5E;
+  color: #283f5e;
 }
 
 .duration-container {
@@ -251,7 +244,6 @@ body {
   background-color: #ddd;
 }
 
-
 .bus-actions {
   display: flex;
   flex-direction: column;
@@ -260,7 +252,7 @@ body {
 
 .price span {
   font-size: 1.6rem;
-  background-color: #ECEEF0;
+  background-color: #eceef0;
   padding: 10px;
   border-radius: 5px;
   color: #283f5e;
@@ -304,7 +296,6 @@ footer {
   padding: 1rem;
   margin-top: 3rem;
 }
-
 
 @media (max-width: 768px) {
   .drawer {
@@ -392,7 +383,6 @@ footer {
     display: none;
   }
 }
-
 
 @media (max-width: 480px) {
   .amenities {
