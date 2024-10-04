@@ -187,6 +187,12 @@ body {
   background-color: #ffffff;
   padding: 20px;
   border-radius: 8px;
+  flex-direction: column;
+}
+.total{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .bus-info {
@@ -275,7 +281,6 @@ body {
   gap: 10px;
   font-size: 0.9rem;
   color: #333;
-
   justify-content: center;
 }
 
@@ -426,7 +431,14 @@ footer {
   .amenities {
     display: none;
   }
+  .total{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
 }
+
 
 @media (max-width: 480px) {
   .amenities {
@@ -437,6 +449,12 @@ footer {
     flex-direction: column;
     align-items: center;
     padding: 10px;
+  }
+  .total{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
   }
   .bus-actions {
     align-items: center;
