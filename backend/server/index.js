@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const path = require("path");
 const bcrypt = require("bcrypt");
 
-const collection = require("../models/auth");
+const { collection, bus } = require("../models/auth");
 const { stat } = require("fs");
 const app = express();
 const staticpath = path.join(__dirname, "..", "..", "client");
@@ -28,7 +28,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use(express.static(staticpath));
-app.use("/admin", express.static(statipath));
+app.use(express.static(statipath));
 
 app.get("/", (req, res) => {
     res.sendFile(home);
@@ -70,6 +70,16 @@ app.get("/newbus", (req, res) => {
     res.sendFile(newbus);
 });
 
+app.get('/api/buses', async (req, res) => {
+    try {
+        const buses = await bus.find(); // Assuming you have a Bus model
+        res.status(200).json(buses);
+    } catch (err) {
+        console.error("Error fetching buses:", err);
+        res.status(500).json({ message: "Failed to fetch buses" });
+    }
+});
+
 app.get("/contact", (req, res) => {
     res.sendFile(contact);
 });
@@ -95,7 +105,7 @@ app.post("/api/register", async (req, res) => {
 });
 app.post("/api/login", async (req, res) => {
     try {
-        isPasswordValid = false; 
+        isPasswordValid = false;
         const { username, password } = req.body;
         //console.log('Login data:', req.body);
         // Find user by username or email
@@ -103,8 +113,8 @@ app.post("/api/login", async (req, res) => {
         if (!user) {
             return res.status(400).json({ message: "User not found" });
         }
-        if(user.password==password){
-            isPasswordValid=true;
+        if (user.password == password) {
+            isPasswordValid = true;
         }
         // Check if the password is correct
         //const isPasswordValid = await bcrypt.compare(password, user.password);
@@ -119,7 +129,59 @@ app.post("/api/login", async (req, res) => {
         console.error("Login error:", error);
         res.status(500).json({ message: "Internal server error" });
     }
-    
+});
+app.post("/api/newbus", async (req, res) => {
+    const {
+        rowNumber,
+        busName,
+        originLocation,
+        destination,
+        departureTime,
+        seatCapacity,
+        routeNumber,
+        fare,
+        date,
+        arrivalTime,
+    } = req.body;
+    console.log("Data received:", req.body);
+    // Connect to the MongoDB database
+    const newBus = new bus({
+        routeNumber: routeNumber,
+        rowNumber: rowNumber,
+        busName: busName,
+        departureTime: departureTime,
+        arrivalTime: arrivalTime,
+        availableSeats: seatCapacity,
+        price: fare,
+        fromLocation: originLocation,
+        toLocation: destination,
+        travelDate: date,
+    });
+
+    try {
+        const savedBus = await newBus.save();
+        console.log("New bus added:", savedBus);
+        res.status(200).json({
+            message: "New bus added successfully",
+            savedBus,
+        });
+    } catch (err) {
+        console.error("Error adding new bus:", err);
+        res.status(500).json({ message: "Failed to add new bus" });
+    }
+});
+app.delete("/api/buses/row/:rowNumber", async (req, res) => {
+    const { rowNumber } = req.params;
+    try {
+        const deletedBus = await bus.findOneAndDelete({ rowNumber });
+        if (!deletedBus) {
+            return res.status(404).json({ message: "Bus not found" });
+        }
+        res.status(200).json({ message: "Bus deleted successfully", deletedBus });
+    } catch (err) {
+        console.error("Error deleting bus:", err);
+        res.status(500).json({ message: "Failed to delete bus" });
+    }
 });
 
 app.listen(5000, () => {

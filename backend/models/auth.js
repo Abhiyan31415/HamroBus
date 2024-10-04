@@ -28,5 +28,51 @@ const LoginSchema = new mongoose.Schema({
         required: true,
     },
 });
+
+const BusSchema = new mongoose.Schema({
+    routeNumber: {
+        type: String,
+        required: true,
+    },
+    rowNumber:{
+        type: Number,
+        required: true,
+    },
+    busName: {
+        type: String,
+        required: true,
+    },
+
+    departureTime: {
+        type: Date,
+        required: true,
+    },
+    arrivalTime: {
+        type: Date,
+        required: true,
+    },
+    availableSeats: {
+        type: Number,
+        required: true,
+    },
+    price: {
+        type: Number,
+        required: true,
+    },
+    fromLocation: {
+        type: String,
+        required: true, // Add this line to require fromLocation
+    },
+    toLocation: {
+        type: String,
+        required: true, // Add this line to require toLocation
+    },
+    travelDate: {
+        type: String,
+        required: true, // Add this line to require travelDate
+    },
+});
+
 const collection = new mongoose.model("Users", LoginSchema);
-module.exports = collection;
+const bus = new mongoose.model("Bus", BusSchema);
+module.exports = { collection, bus };
