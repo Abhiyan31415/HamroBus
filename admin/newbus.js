@@ -56,7 +56,7 @@ function renderTable(data) {
         cell1.innerHTML = index;
         cell2.innerHTML = bus.busName;
         cell3.innerHTML = bus.fromLocation;
-        cell4.innerHTML = isoToTime(bus.departureTime);
+        cell4.innerHTML = bus.toLocation;
         cell5.innerHTML = isoToTime(bus.arrivalTime);
         cell6.innerHTML = bus.availableSeats;
         cell7.innerHTML = `

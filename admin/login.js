@@ -5,7 +5,7 @@ function showCustomAlert(message, link, linkText) {
     const customAlert = document.getElementById('customAlert');
 
     alertMessage.textContent = message; // Set the message text
-    alertLink.href = "http://localhost:5000/"; // Set the link URL
+    alertLink.href = "http://localhost:5000/client/c-index.html"; // Set the link URL
     alertLink.textContent = linkText; // Set the link text
     customAlert.style.display = 'block'; // Show the modal
 }

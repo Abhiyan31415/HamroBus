@@ -2,8 +2,14 @@ const express = require("express");
 const mongoose = require("mongoose");
 const path = require("path");
 const bcrypt = require("bcrypt");
+//const cors = require('cors');
+//const dotenv = require('dotenv');
+const busRoutes = require("../routes/busRoutes"); // Importing bus routes
 
-const { collection, bus } = require("../models/auth");
+//dotenv.config();
+
+const bus = require("../models/Bus");
+const collection = require("../models/auth");
 const { stat } = require("fs");
 const app = express();
 const staticpath = path.join(__dirname, "..", "..", "client");
@@ -27,8 +33,8 @@ const newbus = path.join(statipath, "newbus.html");
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use(express.static(staticpath));
-app.use(express.static(statipath));
+app.use('/client/',express.static(staticpath));
+app.use("/admin/", express.static(statipath));
 
 app.get("/", (req, res) => {
     res.sendFile(home);
@@ -92,6 +98,7 @@ app.post("/api/register", async (req, res) => {
         contact,
         password,
     };
+    console.log("Data received:", req.body);
     //const userdata=await collection.insertMany(data);
     // Save the data to the database (or handle as needed)
     try {
@@ -153,9 +160,9 @@ app.post("/api/newbus", async (req, res) => {
         arrivalTime: arrivalTime,
         availableSeats: seatCapacity,
         price: fare,
-        fromLocation: originLocation,
-        toLocation: destination,
-        travelDate: date,
+        fromLocation: capitalizeFirstOnly(originLocation),
+        toLocation: capitalizeFirstOnly(destination),
+        travelDate: changeDateFormat(date),
     });
 
     try {
@@ -195,8 +202,7 @@ app.put("/api/buses/:id", async (req, res) => {
     // For example:
     try {
         // Assuming you have a method to update the bus in your database
-        await bus.updateOne({ rowNumber
-        }, updatedData);
+        await bus.updateOne({ rowNumber }, updatedData);
         res.status(200).json({
             message: "Bus information updated successfully.",
         });
@@ -207,7 +213,18 @@ app.put("/api/buses/:id", async (req, res) => {
         });
     }
 });
+app.use("/api", busRoutes);
 
 app.listen(5000, () => {
     console.log("Server is running on port 5000");
 });
+function capitalizeFirstOnly(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+}
+function changeDateFormat(dateStr) {
+    // Split the date by '/' to get [MM, DD, YYYY]
+    let dateParts = dateStr.split("/");
+
+    // Join the date parts using '-' to form the new date
+    return dateParts.join("-");
+}

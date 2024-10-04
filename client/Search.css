@@ -187,6 +187,12 @@ body {
   background-color: #ffffff;
   padding: 20px;
   border-radius: 8px;
+  flex-direction: column;
+}
+.total{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .bus-info {
@@ -275,7 +281,6 @@ body {
   gap: 10px;
   font-size: 0.9rem;
   color: #333;
-
   justify-content: center;
 }
 
@@ -296,23 +301,32 @@ footer {
   padding: 1rem;
   margin-top: 3rem;
 }
+
+/* Adjust seat map to keep it aligned */
 .seat-map {
   display: grid;
   grid-template-columns: repeat(4, 50px);
   gap: 10px;
-  margin: 20px 0;
+  margin: 20px 0; /* Remove left margin */
+  align-items: center;
 }
 
 .seat {
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
   text-align: center;
-  line-height: 50px;
+  line-height: 30px; /* Center text vertically */
   background-color: lightblue;
   border: 1px solid #000;
   cursor: pointer;
 }
-
+.seatclass{
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  text-align: left;
+  padding: 30px;
+}
 .booked {
   background-color: gray;
   cursor: not-allowed;
@@ -325,6 +339,12 @@ footer {
 .available {
   background-color: lightblue;
 }
+
+.seat-info {
+  margin-top: 20px; /* Add margin to separate from seat map */
+}
+
+
 
 @media (max-width: 768px) {
   .drawer {
@@ -411,7 +431,14 @@ footer {
   .amenities {
     display: none;
   }
+  .total{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
 }
+
 
 @media (max-width: 480px) {
   .amenities {
@@ -422,6 +449,12 @@ footer {
     flex-direction: column;
     align-items: center;
     padding: 10px;
+  }
+  .total{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
   }
   .bus-actions {
     align-items: center;
