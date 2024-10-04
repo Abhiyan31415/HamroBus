@@ -70,7 +70,7 @@ app.get("/newbus", (req, res) => {
     res.sendFile(newbus);
 });
 
-app.get('/api/buses', async (req, res) => {
+app.get("/api/buses", async (req, res) => {
     try {
         const buses = await bus.find(); // Assuming you have a Bus model
         res.status(200).json(buses);
@@ -177,10 +177,34 @@ app.delete("/api/buses/row/:rowNumber", async (req, res) => {
         if (!deletedBus) {
             return res.status(404).json({ message: "Bus not found" });
         }
-        res.status(200).json({ message: "Bus deleted successfully", deletedBus });
+        res.status(200).json({
+            message: "Bus deleted successfully",
+            deletedBus,
+        });
     } catch (err) {
         console.error("Error deleting bus:", err);
         res.status(500).json({ message: "Failed to delete bus" });
+    }
+});
+// Express example for the update endpoint
+app.put("/api/buses/:id", async (req, res) => {
+    const rowNumber = req.params.id; // Get bus ID from URL
+    const updatedData = req.body; // Get updated data from request body
+
+    // Here, you'd perform your database update logic
+    // For example:
+    try {
+        // Assuming you have a method to update the bus in your database
+        await bus.updateOne({ rowNumber
+        }, updatedData);
+        res.status(200).json({
+            message: "Bus information updated successfully.",
+        });
+    } catch (error) {
+        res.status(500).json({
+            message: "Error updating bus information.",
+            error: error.message,
+        });
     }
 });
 

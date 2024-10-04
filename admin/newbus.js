@@ -142,39 +142,55 @@ document.getElementById("busForm").addEventListener("submit", function (event) {
 document
     .querySelector("table tbody")
     .addEventListener("click", function (event) {
-        const target = event.target;
+      const target = event.target;
 
-        // Edit button functionality
-        if (target.closest(".edit-btn")) {
-            const editButton = target.closest(".edit-btn");
-            const row = editButton.closest("tr");
-            const cells = row.querySelectorAll("td:not(:last-child)"); // All cells except the last (actions)
-
-            if (editButton.getAttribute("data-editing") === "false") {
-                // Change cells to input fields for editing
-                cells.forEach((cell) => {
-                    const cellValue = cell.innerText;
-                    cell.innerHTML = `<input type="text" value="${cellValue}" />`;
-                });
-
-                // Update button to indicate save mode
-                editButton.innerHTML = '<i class="fa fa-save"></i>';
-                editButton.setAttribute("data-editing", "true");
-            } else {
-                // Save edited values
-                cells.forEach((cell) => {
-                    const input = cell.querySelector("input");
-                    if (input) {
-                        cell.innerHTML = input.value;
-                    }
-                });
-
-                // Revert button back to edit mode
-                editButton.innerHTML = '<i class="fa fa-pen"></i>';
-                editButton.setAttribute("data-editing", "false");
-            }
-        }
-
+      // Edit button functionality
+      if (target.closest(".edit-btn")) {
+          const editButton = target.closest(".edit-btn");
+          const row = editButton.closest('tr');
+          const cells = row.querySelectorAll('td:not(:last-child)'); // All cells except the last (actions)
+          const rowNumber = row.getAttribute('data-bus-id'); // Get the bus ID from the data attribute
+  
+          if (editButton.getAttribute("data-editing") === "false") {
+              // Change cells to input fields for editing
+              cells.forEach((cell, index) => {
+                  const cellValue = cell.innerText;
+                  cell.innerHTML = `<input type="text" value="${cellValue}" />`;
+              });
+  
+              // Update button to indicate save mode
+              editButton.innerHTML = '<i class="fa fa-save"></i>';
+              editButton.setAttribute("data-editing", "true");
+          } else {
+              // Save edited values
+              const updatedData = {};
+              cells.forEach((cell, index) => {
+                  const input = cell.querySelector('input');
+                  if (input) {
+                      updatedData[index] = input.value; // Store updated value
+                      cell.innerHTML = input.value; // Update the cell
+                  }
+              });
+              
+              // Prepare the data for the update
+              const updatedRowData = {
+                  rowNumber: rowNumber, // Include the bus ID to identify the record
+                  busName: updatedData[1],
+                  originLocation: updatedData[2],
+                  destination: updatedData[3],
+                  departureTime: convertToISO(new Date().toISOString().split('T')[0], updatedData[4]), // Convert to ISO if needed
+                  seatCapacity: updatedData[5],
+            
+              };
+  
+              // Call the function to update the bus in the database
+              updateBus(updatedRowData);
+  
+              // Revert button back to edit mode
+              editButton.innerHTML = '<i class="fa fa-pen"></i>';
+              editButton.setAttribute("data-editing", "false");
+          }
+      }
         // Delete button functionality
         if (target.closest(".delete-btn")) {
             const row = target.closest("tr");
@@ -204,6 +220,32 @@ async function deleteBus(rowNumber) {
         console.error("Failed to delete bus:", error);
     }
 }
+
+
+async function updateBus(updatedRowData) {
+  try {
+      const response = await fetch(`/api/buses/${updatedRowData.rowNumber}`, {
+          method: 'PUT', // Use PUT for updates
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(updatedRowData), // Send the updated data as JSON
+      });
+
+      if (!response.ok) {
+          throw new Error(`Error: ${response.statusText}`);
+      }
+
+      const result = await response.json();
+      console.log(result.message); // Handle success response as needed
+  } catch (error) {
+      console.error("Failed to update bus:", error);
+  }
+}
+
+
+
+
 
 // Example usage: Pass the row number to delete// Replace with the actual row number you want to delete
 
