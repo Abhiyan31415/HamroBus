@@ -51,13 +51,13 @@
           At Hamro Bus"
         </h1>
         <div class="search-form">
-          <form>
+          <form id="search-form">
             <div class="from">
               <span>From:</span>
               <!-- <div style="display: flex; align-items: center;"> -->
               <input
                 type="text"
-                id="from"
+                id="dropdown-btn"
                 name="from"
                 placeholder="Enter city"
                 list="city-list"
@@ -91,12 +91,24 @@
               <!-- <div style="display: flex; align-items: center;"> -->
               <input
                 type="text"
-                id="to"
+                id="dropdown-btn-to"
                 name="to"
                 placeholder="Enter destination"
                 list="city-list"
               />
-
+              <datalist id="city-list">
+                <option value="Kathmandu"></option>
+                <option value="Pokhara"></option>
+                <option value="Biratnagar"></option>
+                <option value="Lalitpur"></option>
+                <option value="Bharatpur"></option>
+                <option value="Birgunj"></option>
+                <option value="Dharan"></option>
+                <option value="Butwal"></option>
+                <option value="Hetauda"></option>
+                <option value="Janakpur"></option>
+                <!-- Add more cities as necessary -->
+              </datalist>
               <!-- </div> -->
             </div>
 
@@ -105,7 +117,7 @@
               <input type="date" id="date" name="date" />
             </div>
 
-            <button formaction="Search.html" type="submit">Search</button>
+            <button id="search-button" formaction="Search.html" type="submit">Search</button>
           </form>
         </div>
       </div>
