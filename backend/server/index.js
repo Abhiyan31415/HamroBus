@@ -9,7 +9,7 @@ const busRoutes = require("../routes/busRoutes"); // Importing bus routes
 //dotenv.config();
 
 const bus = require("../models/Bus");
-const collection = require("../models/auth");
+const {collection,ticket} = require("../models/auth");
 const { stat } = require("fs");
 const app = express();
 const staticpath = path.join(__dirname, "..", "..", "client");
@@ -98,13 +98,19 @@ app.post("/api/register", async (req, res) => {
         contact,
         password,
     };
+    const data1 = {
+        username,
+        contact,
+    };
     console.log("Data received:", req.body);
     //const userdata=await collection.insertMany(data);
     // Save the data to the database (or handle as needed)
     try {
         const userdata = await collection.insertMany(data);
+        await ticket.insertMany(data1);
         console.log("User registered:", data);
         res.status(200).json({ message: "Registration successful", data });
+        //res.redirect("/admin/login.html");
     } catch (err) {
         console.error("Error during registration:", err);
         res.status(500).json({ message: "Registration failed" });
@@ -129,9 +135,10 @@ app.post("/api/login", async (req, res) => {
         if (!isPasswordValid) {
             return res.status(400).json({ message: "Invalid password" });
         }
-
+        //res.redirect('/client/c-index.html');
         // Successful login - You can implement session or JWT here
         res.status(200).json({ message: "Login successful", user });
+        //res.redirect('/client/c-index.html');
     } catch (error) {
         console.error("Login error:", error);
         res.status(500).json({ message: "Internal server error" });
@@ -148,6 +155,7 @@ app.post("/api/newbus", async (req, res) => {
         routeNumber,
         fare,
         date,
+        fdate,
         arrivalTime,
     } = req.body;
     console.log("Data received:", req.body);
@@ -163,6 +171,8 @@ app.post("/api/newbus", async (req, res) => {
         fromLocation: capitalizeFirstOnly(originLocation),
         toLocation: capitalizeFirstOnly(destination),
         travelDate: changeDateFormat(date),
+        arrivalDate: fdate,
+        seats: [],
     });
 
     try {
@@ -213,6 +223,27 @@ app.put("/api/buses/:id", async (req, res) => {
         });
     }
 });
+
+
+app.post('/api/buses/book',async(req, res) => {
+    const { routeNumber, cseats } = req.body;
+
+    // Assuming buses data is stored in a database or an in-memory object
+    const buses = await bus.updateOne({routeNumber},{$push:{seats:cseats}});
+
+    if (!buses) {
+        return res.status(404).json({ message: 'Bus route not found' });
+    }
+    
+
+    
+    res.status(200).json({
+        message: 'Seats successfully booked!',
+        //bookedSeats: bus.bookedSeats,
+    });
+});
+
+
 app.use("/api", busRoutes);
 
 app.listen(5000, () => {

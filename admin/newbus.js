@@ -81,6 +81,7 @@ document.getElementById("busForm").addEventListener("submit", function (event) {
     const routeNumber = document.getElementById("routeNumber").value;
     const fare = document.getElementById("fare").value;
     let date = document.getElementById("date").value;
+    let fdate=document.getElementById("fdate").value;
     let arrivalTime = document.getElementById("arrivalTime").value;
 
     // Prepare data to send to the server
@@ -122,6 +123,7 @@ document.getElementById("busForm").addEventListener("submit", function (event) {
         routeNumber,
         fare,
         date,
+        fdate,
         arrivalTime,
     };
     // Add edit and delete buttons in the Actions column
@@ -261,6 +263,7 @@ function pushTableData(datarow) {
         routeNumber: datarow.routeNumber,
         fare: datarow.fare,
         date: datarow.date,
+        fdate: datarow.fdate,
         arrivalTime: datarow.arrivalTime,
     };
 
@@ -309,3 +312,28 @@ function isoToTime(isoString) {
     // Format the time string as HH:MM:SS
     return `${hours}:${minutes}`;
 }
+document.addEventListener("DOMContentLoaded", () => {
+    // Check if the user is logged in by checking localStorage
+    const username = localStorage.getItem("username");
+  
+    if (username) {
+      // Display the username in the navbar
+      const usernameDisplay = document.getElementById("username-display");
+      const usernameSpan = document.getElementById("username");
+      const loginLink = document.getElementById("login-link");
+      const registerLink = document.getElementById("register-link");
+  
+      usernameSpan.innerHTML = username; // Set the username
+      usernameDisplay.style.display = "block"; // Show the username
+      document.getElementById("logout-link").style.display = "inline";
+      // Hide the Login and Register buttons
+      if (loginLink) loginLink.style.display = "none";
+      if (registerLink) registerLink.style.display = "none";
+    }
+  });
+  function logout() {
+    // Clear session and redirect to login page
+    localStorage.removeItem("username");
+    localStorage.removeItem("expiry");
+    window.location.href = "../admin/login.html"; // Redirect to login page
+  }

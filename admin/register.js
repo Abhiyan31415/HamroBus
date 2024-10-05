@@ -29,6 +29,9 @@ function validateForm(event) {
     .then(data => {
         console.log('Success:', data);
         alert('Registration successful!');
+        // Optionally, redirect to a dashboard or another page after successful registration
+        // Change this URL based on your app
+        window.location.href = "/admin/login.html";
     })
     .catch((error) => {
         console.error('Error:', error);

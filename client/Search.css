@@ -263,7 +263,19 @@ body {
   border-radius: 5px;
   color: #283f5e;
 }
-
+.book-btn{
+  background-color: #acd676;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  color: #283f5e;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+}
+.book-btn:hover {
+  background-color: #95c45e;
+  color: #fff;
+}
 .view-seats-btn {
   padding: 10px 20px;
   background-color: #acd676;

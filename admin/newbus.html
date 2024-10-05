@@ -20,8 +20,11 @@
             <li><a href="../client/contact.html">Contact Us</a></li>
             <li><a href="../client/faq.html">FAQ</a></li>
             <li><a href="../client/manage.html">Manage Ticket</a></li>
-            <li><a href="./login.html">Login</a></li>
-            <li><a href="./register.html" class="register-btn">Register</a></li>
+            <li id="login-link"><a href="../admin/login.html">Login</a></li>
+          <li id="register-link"><a href="../admin/register.html" class="register-btn">Register</a></li>
+          <!-- Placeholder for Username -->
+          <li id="username-display" style="display: none;"><a href="#">Welcome, <span id="username"></span></a></li>
+          <li id="logout-link" style="display: none;"><a href="#" class ="register-btn" onclick="logout()">Logout</a></li>
           </ul>
           <div class="hamburger" id="hamburger">☰</div>
         </nav>
@@ -72,17 +75,26 @@
               <button class="add-details-btn" id="addDetailsBtn" style="text-align: center;">Add details</button>
             </div>
             <div class="form-container" id="formContainer">
-              <form id="busForm">
+              <form id="busForm" style="display: flex;gap: 25px;flex-direction: column;">
                 <input type="text" id="busName" placeholder="Bus Name" required>
                 <input type="text" id="originLocation" placeholder="Origin Location" required>
                 <input type="text" id="destination" placeholder="Destination" required>
-                <input type="time" id="departureTime" required>
-                <input type="time" id="arrivalTime" required>
+                <input type="time" id="departureTime" placeholder="Departure Time" required>
+                <input type="time" id="arrivalTime" placeholder="Arrival Time" required>
                 <input type="number" id="seatCapacity" placeholder="Seat Capacity" required>
                 <input type="text" id="routeNumber" placeholder="Route Number" required>
                 <input type="number" id="fare" placeholder="Fare" required>
-                <input type="date" id="date" required>
-                <button type="submit" id="addBus">Add Bus</button>
+                <div style="display: flex; flex-direction: column;  position: relative;">
+                  <label for="date" style="color: #888; position: absolute; top: -22px;">Start Date</label>
+                  <input type="date" id="date" required >
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 20px; position: relative;">
+                  <label for="fdate" style="color: #888; position: absolute; top: -22px;">Final Date</label>
+                  <input type="date" id="fdate" required >
+              </div>
+              
+              
+                <button type="submit" id="addBus" style="width: 120px;">Add Bus</button>
               </form>
             </div>
           </div>

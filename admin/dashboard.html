@@ -19,8 +19,11 @@
           <li><a href="contact.html">Contact Us</a></li>
           <li><a href="faq.html">FAQ</a></li>
           <li><a href="manage_ticket.html">Manage Ticket</a></li>
-          <li><a href="login.html">Login</a></li>
-          <li><a href="register.html" class="register-btn">Register</a></li>
+          <li id="login-link"><a href="../admin/login.html">Login</a></li>
+          <li id="register-link"><a href="../admin/register.html" class="register-btn">Register</a></li>
+          <!-- Placeholder for Username -->
+          <li id="username-display" style="display: none;"><a href="#">Welcome, <span id="username"></span></a></li>
+          <li id="logout-link" style="display: none;"><a href="#" class ="register-btn" onclick="logout()">Logout</a></li>
         </ul>
         <div class="hamburger" id="hamburger">☰</div>
       </nav>

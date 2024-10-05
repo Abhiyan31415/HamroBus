@@ -40,6 +40,14 @@ const busSchema = new mongoose.Schema({
     travelDate: {
         type: String, 
         required: true // Add this line to require travelDate
+    },
+    arrivalDate:{
+        type: String,
+        required: true
+    },
+    seats:{
+        type:[String],
+        required:true,
     }
 });
 
