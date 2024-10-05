@@ -17,4 +17,5 @@ router.delete('/buses/:id', deleteBus);
 // New search route
 router.post('/buses/search', searchBuses);
 
+
 module.exports = router;

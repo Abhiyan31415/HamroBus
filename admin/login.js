@@ -49,6 +49,7 @@ function validateLoginForm(event) {
         showCustomAlert('Login success: ', 'Click here', 'to go to home page');
         console.log('Login success:', data.user.username);
         localStorage.setItem("username", data.user.username);
+        localStorage.setItem("contact", data.user.contact); 
         window.location.href = "/client/c-index.html";
         //Optionally, redirect to a dashboard or another page after successful login
         // Change this URL based on your app

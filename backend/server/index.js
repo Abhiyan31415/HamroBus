@@ -9,7 +9,7 @@ const busRoutes = require("../routes/busRoutes"); // Importing bus routes
 //dotenv.config();
 
 const bus = require("../models/Bus");
-const {collection,ticket} = require("../models/auth");
+const { collection, ticket } = require("../models/auth");
 const { stat } = require("fs");
 const app = express();
 const staticpath = path.join(__dirname, "..", "..", "client");
@@ -28,12 +28,12 @@ const login = path.join(statipath, "login.html");
 const register = path.join(statipath, "register.html");
 const dashboard = path.join(statipath, "dashboard.html");
 const newbus = path.join(statipath, "newbus.html");
-
+const busdetails = path.join(statipath, "busdetails.html");
 //convert data into json
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use('/client/',express.static(staticpath));
+app.use("/client/", express.static(staticpath));
 app.use("/admin/", express.static(statipath));
 
 app.get("/", (req, res) => {
@@ -75,7 +75,9 @@ app.get("/dashboard", (req, res) => {
 app.get("/newbus", (req, res) => {
     res.sendFile(newbus);
 });
-
+app.get("/busdetails", (req, res) => {
+    res.sendFile(busdetails);
+});
 app.get("/api/buses", async (req, res) => {
     try {
         const buses = await bus.find(); // Assuming you have a Bus model
@@ -88,6 +90,25 @@ app.get("/api/buses", async (req, res) => {
 
 app.get("/contact", (req, res) => {
     res.sendFile(contact);
+});
+// Get tickets by username and contact from request body
+app.post("/api/tickets/search", async (req, res) => {
+    const { username, contact } = req.body;
+
+    try {
+        // Search for tickets by both username and contact
+        const tickets = await ticket.findOne({ username, contact });
+
+        if (tickets.length === 0) {
+            return res.status(404).json({
+                message: "No tickets found for this user and contact",
+            });
+        }
+        res.status(200).json(tickets);
+    } catch (err) {
+        console.error("Error fetching tickets:", err);
+        res.status(500).json({ message: "Failed to fetch tickets" });
+    }
 });
 
 app.post("/api/register", async (req, res) => {
@@ -223,26 +244,76 @@ app.put("/api/buses/:id", async (req, res) => {
         });
     }
 });
+app.post("/api/busdetails", async (req, res) => {
+    const { rowNumber } = req.body;
+    console.log("Bus details requested for row number:", rowNumber);
+    try {
+        const busDetails = await bus.findOne({ rowNumber });
+        console.log("Bus details:", busDetails);
+        if (!busDetails) {
+            return res.status(404).json({ message: "Bus not found" });
+        }
+        res.status(200).json(busDetails);
+    }
+    catch (err) {
+        console.error("Error fetching bus details:", err);
+        res.status(500).json({ message: "Failed to fetch bus details" });
+    }
+});
 
-
-app.post('/api/buses/book',async(req, res) => {
-    const { routeNumber, cseats } = req.body;
+app.post("/api/buses/book", async (req, res) => {
+    const { routeNumber, cseats, username, contact } = req.body;
 
     // Assuming buses data is stored in a database or an in-memory object
-    const buses = await bus.updateOne({routeNumber},{$push:{seats:cseats}});
 
-    if (!buses) {
-        return res.status(404).json({ message: 'Bus route not found' });
+    const buses = await bus.updateOne(
+        { routeNumber },
+        { $push: { seats: cseats } }
+    );
+    const updatePromises = cseats.map((sea) => {
+        return bus.updateOne(
+            { routeNumber },
+            { $push: { seatsInfo: { sea, username, contact } } }
+        );
+    });
+    
+    try {
+        await Promise.all(updatePromises);
+        console.log("All seat information updated successfully.");
+    } catch (error) {
+        console.error("Error updating seats:", error);
     }
     
-
     
+
+    const buse = await bus.findOne({ routeNumber });
+    console.log(buses);
+    console.log(username, contact);
+    const tickets = await ticket.updateOne(
+        { username, contact },
+        {
+            $push: {
+                routeNumber: routeNumber,
+                busName: buse.busName,
+                departureTime: buse.departureTime,
+                arrivalTime: buse.arrivalTime,
+                fromLocation: buse.fromLocation,
+                toLocation: buse.toLocation,
+                travelDate: buse.travelDate,
+                bookedSeats: cseats,
+            },
+        }
+    );
+
+    if (!buses) {
+        return res.status(404).json({ message: "Bus route not found" });
+    }
+
     res.status(200).json({
-        message: 'Seats successfully booked!',
+        message: "Seats successfully booked!",
         //bookedSeats: bus.bookedSeats,
     });
 });
-
 
 app.use("/api", busRoutes);
 

@@ -32,43 +32,51 @@ const LoginSchema = new mongoose.Schema({
 const ticketSchema = new mongoose.Schema({
     username: {
         type: String,
-        required: false,
+        required: true,
     },
     contact: {
         type: Number,
-        required: false,
+        required: true,
     }, 
     routeNumber: {
-        type: String,
-        required: false,
+        type: [String],
+        default:[],
+        required: true,
     },
     busName:{
-        type:String,
-        required:false,
+        type:[String],
+        default:[],
+        required:true,
     },
     departureTime: {
-        type: Date,
-        required: false,
+        type: [Date],
+        default:[],
+        required: true,
     },
     arrivalTime: {
-        type: Date,
-        required: false,
+        type: [Date],
+        default:[],
+        required: true,
     },
     fromLocation: {
-        type: String,
-        required: false, // Add this line to require fromLocation
+        type: [String],
+        default:[],
+        required: true, // Add this line to require fromLocation
     },
     toLocation: {
-        type: String,
-        required: false, // Add this line to require toLocation
+        type: [String],
+        default:[],
+        required: true, // Add this line to require toLocation
     },
     travelDate: {
-        type: String, 
-        required: false, // Add this line to require travelDate
+        type: [String],
+        default:[], 
+        required: true, // Add this line to require travelDate
     },
     bookedSeats:{
-        type:[String],
-        required:false,
+        type:[[String]],
+        default:[],
+        required:true,
     }
 
 

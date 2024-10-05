@@ -277,7 +277,7 @@ function displayBusListings(busListings) {
               <div class="seat-map">`;
 
         const bookedSeats = bus.seats;
-        for (let i = 1; i <= (bus.availableSeats / 2); i++) {
+        for (let i = 1; i <= bus.availableSeats / 2; i++) {
             ["A", "B"].forEach((row) => {
                 let seatId = `${row}${i}`;
                 let seatClass = bookedSeats.includes(seatId)
@@ -373,6 +373,7 @@ async function handleBooking(routeNumber, selectedSeatIds) {
             }
         });
         console.log("Selected seats:", selectedSeatIds);
+
         // Send selected seats to backend
         try {
             const response = await fetch("/api/buses/book", {
@@ -381,6 +382,8 @@ async function handleBooking(routeNumber, selectedSeatIds) {
                 body: JSON.stringify({
                     routeNumber: routeNumber,
                     cseats: selectedSeatIds,
+                    username: localStorage.getItem("username"),
+                    contact: localStorage.getItem("contact"),
                 }),
             });
 
@@ -391,6 +394,11 @@ async function handleBooking(routeNumber, selectedSeatIds) {
 
             const result = await response.json();
             console.log("Booking successful:", result);
+            updateTextContent(`fare-${routeNumber}`, ""); // Clear fare
+            updateTextContent(`total-amount-${routeNumber}`, "");
+            updateTextContent(`selected-seats-${routeNumber}`, "");
+            // Clear total amount
+            alert("Tickets booked successfully!");
             // Optionally, display a success message or update UI
         } catch (error) {
             console.error("Error during booking:", error);

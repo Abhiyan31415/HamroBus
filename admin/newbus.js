@@ -61,7 +61,8 @@ function renderTable(data) {
         cell6.innerHTML = bus.availableSeats;
         cell7.innerHTML = `
       <button class="edit-btn" data-editing="false"><i class="fa fa-pen"></i></button>
-      <button class="delete-btn"><i class="fa fa-trash"></i></button>`;
+      <button class="delete-btn"><i class="fa fa-trash"></i></button>
+      <button class="view-btn"><i class="fa fa-eye"></i></button>`;
         // Add more cell data as needed
         index++;
     });
@@ -130,6 +131,7 @@ document.getElementById("busForm").addEventListener("submit", function (event) {
     cell7.innerHTML = `
       <button class="edit-btn" data-editing="false"><i class="fa fa-pen"></i></button>
       <button class="delete-btn"><i class="fa fa-trash"></i></button>
+      <button class="view-btn"><i class="fa fa-eye"></i></button>
   `;
 
     // Push the form data (including non-table fields) to the server
@@ -200,6 +202,14 @@ document
             row.remove(); // Remove the row
             deleteBus(rowNumber);
         }
+        if(target.closest(".view-btn")){
+            const row = target.closest("tr");
+            const rowNumber = row.getAttribute("data-bus-id");
+            localStorage.setItem("rowNumber", rowNumber);
+            fetchBusDetails();
+            //window.location.href = `/admin/busdetails.html`;
+        }
+
     });
 async function deleteBus(rowNumber) {
     try {
@@ -244,6 +254,7 @@ async function updateBus(updatedRowData) {
       console.error("Failed to update bus:", error);
   }
 }
+
 
 
 
@@ -337,3 +348,60 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.removeItem("expiry");
     window.location.href = "../admin/login.html"; // Redirect to login page
   }
+ 
+
+  async function fetchBusDetails() {
+    try {
+        const response = await fetch('/api/busdetails', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ rowNumber: localStorage.getItem('rowNumber') }) // Replace with actual row number
+        });
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+
+        const data = await response.json();
+        console.log(data);
+
+        // Create a formatted string from the response data
+        const formattedData = `
+        Bus Details Report
+        =========================
+        Route Number: ${data.routeNumber}
+        Bus Name: ${data.busName}
+        Departure Time: ${new Date(data.departureTime).toLocaleString()}
+        Arrival Time: ${new Date(data.arrivalTime).toLocaleString()}
+        From: ${data.fromLocation} To: ${data.toLocation}
+        Travel Date: ${data.travelDate}
+        Arrival Date: ${data.arrivalDate}
+        
+        Available Seats: ${data.availableSeats} (Price: ${data.price} NPR)
+        
+        Seats:
+        ${data.seats.join(', ')}
+
+        Reserved Seats Info:
+        =========================
+        ${data.seatsInfo.map(seat => `Seat: ${seat.sea}, Username: ${seat.username}, Contact: ${seat.contact}`).join('\n')}
+        `;
+
+        // Create a text file with the formatted data
+        const blob = new Blob([formattedData], { type: 'text/plain' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'bus_details.txt'; // Name of the downloaded file
+        document.body.appendChild(a);
+        a.click(); // Simulate a click to download the file
+        document.body.removeChild(a); // Clean up
+        URL.revokeObjectURL(url); // Release the object URL
+    } catch (error) {
+        console.error('There has been a problem with your fetch operation:', error);
+    }
+}
+
+

@@ -48,7 +48,12 @@ const busSchema = new mongoose.Schema({
     seats:{
         type:[String],
         required:true,
-    }
+    },
+    seatsInfo: [{ // Update this as necessary
+        sea: { type: String, required: true },
+        username: { type: String, required: true },
+        contact: { type: String, required: true },
+    }],
 });
 
 const Bus = mongoose.model('Bus', busSchema);
