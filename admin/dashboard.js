@@ -128,4 +128,3 @@ function logout() {
   localStorage.removeItem("expiry");
   window.location.href = "../admin/login.html"; // Redirect to login page
 }
-

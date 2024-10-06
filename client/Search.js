@@ -357,6 +357,11 @@ async function handleBooking(routeNumber, selectedSeatIds) {
         console.error(`Seat layout for route ${routeNumber} not found.`);
         return;
     }
+    if (!localStorage.getItem("username")) {
+        alert("Please login to book tickets");
+        window.location.href = "../admin/login.html";
+        return;
+    }
 
     // Check if selectedSeatIds is not empty
     if (selectedSeatIds.length > 0) {

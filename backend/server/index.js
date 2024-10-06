@@ -245,10 +245,12 @@ app.put("/api/buses/:id", async (req, res) => {
     }
 });
 app.post("/api/busdetails", async (req, res) => {
-    const { rowNumber } = req.body;
-    console.log("Bus details requested for row number:", rowNumber);
+    const { routeNumber } = req.body;
+    console.log("Bus details requested for row number:", routeNumber);
     try {
-        const busDetails = await bus.findOne({ rowNumber });
+        const busDetails = await bus.findOne({ 
+            routeNumber
+         });
         console.log("Bus details:", busDetails);
         if (!busDetails) {
             return res.status(404).json({ message: "Bus not found" });

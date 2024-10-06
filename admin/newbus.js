@@ -350,58 +350,58 @@ document.addEventListener("DOMContentLoaded", () => {
   }
  
 
-  async function fetchBusDetails() {
-    try {
-        const response = await fetch('/api/busdetails', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ rowNumber: localStorage.getItem('rowNumber') }) // Replace with actual row number
-        });
+//   async function fetchBusDetails() {
+//     try {
+//         const response = await fetch('/api/busdetails', {
+//             method: 'POST',
+//             headers: {
+//                 'Content-Type': 'application/json'
+//             },
+//             body: JSON.stringify({ rowNumber: localStorage.getItem('rowNumber') }) // Replace with actual row number
+//         });
 
-        if (!response.ok) {
-            throw new Error('Network response was not ok ' + response.statusText);
-        }
+//         if (!response.ok) {
+//             throw new Error('Network response was not ok ' + response.statusText);
+//         }
 
-        const data = await response.json();
-        console.log(data);
+//         const data = await response.json();
+//         console.log(data);
 
-        // Create a formatted string from the response data
-        const formattedData = `
-        Bus Details Report
-        =========================
-        Route Number: ${data.routeNumber}
-        Bus Name: ${data.busName}
-        Departure Time: ${new Date(data.departureTime).toLocaleString()}
-        Arrival Time: ${new Date(data.arrivalTime).toLocaleString()}
-        From: ${data.fromLocation} To: ${data.toLocation}
-        Travel Date: ${data.travelDate}
-        Arrival Date: ${data.arrivalDate}
+//         // Create a formatted string from the response data
+//         const formattedData = `
+//         Bus Details Report
+//         =========================
+//         Route Number: ${data.routeNumber}
+//         Bus Name: ${data.busName}
+//         Departure Time: ${new Date(data.departureTime).toLocaleString()}
+//         Arrival Time: ${new Date(data.arrivalTime).toLocaleString()}
+//         From: ${data.fromLocation} To: ${data.toLocation}
+//         Travel Date: ${data.travelDate}
+//         Arrival Date: ${data.arrivalDate}
         
-        Available Seats: ${data.availableSeats} (Price: ${data.price} NPR)
+//         Available Seats: ${data.availableSeats} (Price: ${data.price} NPR)
         
-        Seats:
-        ${data.seats.join(', ')}
+//         Seats:
+//         ${data.seats.join(', ')}
 
-        Reserved Seats Info:
-        =========================
-        ${data.seatsInfo.map(seat => `Seat: ${seat.sea}, Username: ${seat.username}, Contact: ${seat.contact}`).join('\n')}
-        `;
+//         Reserved Seats Info:
+//         =========================
+//         ${data.seatsInfo.map(seat => `Seat: ${seat.sea}, Username: ${seat.username}, Contact: ${seat.contact}`).join('\n')}
+//         `;
 
-        // Create a text file with the formatted data
-        const blob = new Blob([formattedData], { type: 'text/plain' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'bus_details.txt'; // Name of the downloaded file
-        document.body.appendChild(a);
-        a.click(); // Simulate a click to download the file
-        document.body.removeChild(a); // Clean up
-        URL.revokeObjectURL(url); // Release the object URL
-    } catch (error) {
-        console.error('There has been a problem with your fetch operation:', error);
-    }
-}
+//         // Create a text file with the formatted data
+//         const blob = new Blob([formattedData], { type: 'text/plain' });
+//         const url = URL.createObjectURL(blob);
+//         const a = document.createElement('a');
+//         a.href = url;
+//         a.download = 'bus_details.txt'; // Name of the downloaded file
+//         document.body.appendChild(a);
+//         a.click(); // Simulate a click to download the file
+//         document.body.removeChild(a); // Clean up
+//         URL.revokeObjectURL(url); // Release the object URL
+//     } catch (error) {
+//         console.error('There has been a problem with your fetch operation:', error);
+//     }
+// }
 
 
