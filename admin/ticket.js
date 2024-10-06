@@ -1,33 +1,43 @@
-async function fetchBusDetails(busNameInput, routeNumberInput) {
+async function fetchBusDetails(travelDateInput, routeNumberInput) {
     try {
-        const response = await fetch('/api/busdetails', {
-            method: 'POST',
+        const response = await fetch("/api/busdetails", {
+            method: "POST",
             headers: {
-                'Content-Type': 'application/json'
+                "Content-Type": "application/json",
             },
-            body: JSON.stringify({ routeNumber: routeNumberInput }) // Replace with actual row number
+            body: JSON.stringify({ routeNumber: routeNumberInput }), // Send route number
         });
 
         if (!response.ok) {
-            throw new Error('Network response was not ok ' + response.statusText);
+            throw new Error(
+                "Network response was not ok " + response.statusText
+            );
         }
 
         const data = await response.json();
-        console.log("fetched successfully");
-        
-        console.log(data);
+        console.log("Fetched successfully", data);
 
-        // Compare input with fetched data
-        if (data.busName.toLowerCase() === busNameInput.toLowerCase() && data.routeNumber === routeNumberInput) {
+        // Format the travel date from "MM-DD-YYYY" to "YYYY-MM-DD" for comparison
+        const travelDateParts = data.travelDate.split("-"); // Split into [MM, DD, YYYY]
+        const formattedTravelDate = `${travelDateParts[2]}-${travelDateParts[0]}-${travelDateParts[1]}`; // Reformat to YYYY-MM-DD
+
+        if (
+            formattedTravelDate === travelDateInput &&
+            data.routeNumber === routeNumberInput
+        ) {
             // Display the bus details if the input matches
-            document.querySelector('h1').textContent = 'Bus Details Report';
+            document.querySelector("h1").textContent = "Bus Details Report";
 
             // Bus Information
-            document.querySelector('.bus-info').innerHTML = `
+            document.querySelector(".bus-info").innerHTML = `
                 <p><strong>Route Number:</strong> ${data.routeNumber}</p>
                 <p><strong>Bus Name:</strong> ${data.busName}</p>
-                <p><strong>Departure Time:</strong> ${new Date(data.departureTime).toLocaleString()}</p>
-                <p><strong>Arrival Time:</strong> ${new Date(data.arrivalTime).toLocaleString()}</p>
+                <p><strong>Departure Time:</strong> ${new Date(
+                    data.departureTime
+                ).toLocaleString()}</p>
+                <p><strong>Arrival Time:</strong> ${new Date(
+                    data.arrivalTime
+                ).toLocaleString()}</p>
                 <p><strong>From:</strong> ${data.fromLocation}</p>
                 <p><strong>To:</strong> ${data.toLocation}</p>
                 <p><strong>Travel Date:</strong> ${data.travelDate}</p>
@@ -35,24 +45,34 @@ async function fetchBusDetails(busNameInput, routeNumberInput) {
             `;
 
             // Seat Availability
-            document.querySelector('.seat-availability').innerHTML = `
+            document.querySelector(".seat-availability").innerHTML = `
                 <p><strong>Available Seats:</strong> ${data.availableSeats}</p>
                 <p><strong>Price:</strong> ${data.price} NPR</p>
-                <p><strong>Seats:</strong> ${data.seats.join(', ')}</p>
+                <p><strong>Seats:</strong> ${data.seats.join(", ")}</p>
             `;
 
             // Reserved Seats Info
-            const reservedSeatsInfo = data.seatsInfo.map(seat => `
+            const reservedSeatsInfo = data.seatsInfo
+                .map(
+                    (seat) => `
                 <li><strong>Seat:</strong> ${seat.sea}, <strong>Username:</strong> ${seat.username}, <strong>Contact:</strong> ${seat.contact}</li>
-            `).join('');
+            `
+                )
+                .join("");
 
-            document.querySelector('.reserved-seats ul').innerHTML = reservedSeatsInfo;
+            document.querySelector(".reserved-seats ul").innerHTML =
+                reservedSeatsInfo;
         } else {
             // Display message if no match is found
-            document.querySelector('.container').innerHTML = `<p>No bus details found for the given name and route number.</p>`;
+            document.querySelector(
+                ".container"
+            ).innerHTML = `<p>No bus details found for the given route number and travel date.</p>`;
         }
     } catch (error) {
-        console.error('There has been a problem with your fetch operation:', error);
+        console.error(
+            "There has been a problem with your fetch operation:",
+            error
+        );
     }
 }
 
@@ -62,15 +82,15 @@ function printReport() {
 }
 
 // Attach the print function to the print button
-document.getElementById('print-btn').addEventListener('click', printReport);
+document.getElementById("print-btn").addEventListener("click", printReport);
 
 // Add event listener to the search button
-document.getElementById('search-btn').addEventListener('click', function() {
-    const busNameInput = document.getElementById('bus-name-input').value;
-    const routeNumberInput = document.getElementById('route-number-input').value;
-    console.log(busNameInput, routeNumberInput);
-    
+document.getElementById("search-btn").addEventListener("click", function () {
+    const departureDateInput = document.getElementById("bus-date-input").value;
+    const routeNumberInput =
+        document.getElementById("route-number-input").value;
+    console.log(departureDateInput, routeNumberInput);
 
     // Call the fetchBusDetails function with user input
-    fetchBusDetails(busNameInput, routeNumberInput);
+    fetchBusDetails(departureDateInput, routeNumberInput);
 });

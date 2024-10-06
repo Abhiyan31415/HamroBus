@@ -165,6 +165,37 @@ app.post("/api/login", async (req, res) => {
         res.status(500).json({ message: "Internal server error" });
     }
 });
+app.get('/api/users/count', async (req, res) => {
+    try {
+        const userCount = await collection.countDocuments(); // Count documents in the User collection
+        res.json({ userCount });
+    } catch (error) {
+        console.error('Error fetching user count:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+app.get('/api/bus/total-booked-seats', async (req, res) => {
+    try {
+        const buses = await bus.find(); // Fetch all bus documents
+
+        let totalBookedSeats = 0;
+        let totalAvailableSeats = 0;
+
+        buses.forEach(bus => {
+            if (bus.seats) {
+                totalBookedSeats += bus.seats.length; // Count booked seats based on the length of the array
+            }
+            // Access available seats directly from the bus object
+            totalAvailableSeats += bus.availableSeats || 0; // Add the available seats for each bus
+        });
+
+        res.json({ totalBookedSeats, totalAvailableSeats }); // Send the response
+    } catch (error) {
+        console.error('Error fetching total booked seats:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
 app.post("/api/newbus", async (req, res) => {
     const {
         rowNumber,

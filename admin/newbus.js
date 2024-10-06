@@ -62,7 +62,7 @@ function renderTable(data) {
         cell7.innerHTML = `
       <button class="edit-btn" data-editing="false"><i class="fa fa-pen"></i></button>
       <button class="delete-btn"><i class="fa fa-trash"></i></button>
-      <button class="view-btn"><i class="fa fa-eye"></i></button>`;
+     `;
         // Add more cell data as needed
         index++;
     });
@@ -131,7 +131,7 @@ document.getElementById("busForm").addEventListener("submit", function (event) {
     cell7.innerHTML = `
       <button class="edit-btn" data-editing="false"><i class="fa fa-pen"></i></button>
       <button class="delete-btn"><i class="fa fa-trash"></i></button>
-      <button class="view-btn"><i class="fa fa-eye"></i></button>
+   
   `;
 
     // Push the form data (including non-table fields) to the server
@@ -202,13 +202,13 @@ document
             row.remove(); // Remove the row
             deleteBus(rowNumber);
         }
-        if(target.closest(".view-btn")){
-            const row = target.closest("tr");
-            const rowNumber = row.getAttribute("data-bus-id");
-            localStorage.setItem("rowNumber", rowNumber);
-            fetchBusDetails();
-            //window.location.href = `/admin/busdetails.html`;
-        }
+        // if(target.closest(".view-btn")){
+        //     const row = target.closest("tr");
+        //     const rowNumber = row.getAttribute("data-bus-id");
+        //     localStorage.setItem("rowNumber", rowNumber);
+        //     fetchBusDetails();
+        //     //window.location.href = `/admin/busdetails.html`;
+        // }
 
     });
 async function deleteBus(rowNumber) {
