@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const path = require("path");
 const bcrypt = require("bcrypt");
+const saltRounds = 10;
 //const cors = require('cors');
 //const dotenv = require('dotenv');
 const busRoutes = require("../routes/busRoutes"); // Importing bus routes
@@ -113,17 +114,18 @@ app.post("/api/tickets/search", async (req, res) => {
 
 app.post("/api/register", async (req, res) => {
     const { username, email, contact, password } = req.body;
+    const hashedPassword = await bcrypt.hash(password, saltRounds);
     const data = {
         username,
         email,
         contact,
-        password,
+        password: hashedPassword,
     };
     const data1 = {
         username,
         contact,
     };
-    console.log("Data received:", req.body);
+    //console.log("Data received:", req.body);
     //const userdata=await collection.insertMany(data);
     // Save the data to the database (or handle as needed)
     try {
@@ -139,7 +141,7 @@ app.post("/api/register", async (req, res) => {
 });
 app.post("/api/login", async (req, res) => {
     try {
-        isPasswordValid = false;
+        let isPasswordValid = false;
         const { username, password } = req.body;
         //console.log('Login data:', req.body);
         // Find user by username or email
@@ -147,11 +149,11 @@ app.post("/api/login", async (req, res) => {
         if (!user) {
             return res.status(400).json({ message: "User not found" });
         }
-        if (user.password == password) {
-            isPasswordValid = true;
-        }
+        // if (user.password == password) {
+        //     isPasswordValid = true;
+        // }
         // Check if the password is correct
-        //const isPasswordValid = await bcrypt.compare(password, user.password);
+        isPasswordValid = await bcrypt.compare(password, user.password);
 
         if (!isPasswordValid) {
             return res.status(400).json({ message: "Invalid password" });
@@ -165,23 +167,23 @@ app.post("/api/login", async (req, res) => {
         res.status(500).json({ message: "Internal server error" });
     }
 });
-app.get('/api/users/count', async (req, res) => {
+app.get("/api/users/count", async (req, res) => {
     try {
         const userCount = await collection.countDocuments(); // Count documents in the User collection
         res.json({ userCount });
     } catch (error) {
-        console.error('Error fetching user count:', error);
-        res.status(500).json({ error: 'Internal Server Error' });
+        console.error("Error fetching user count:", error);
+        res.status(500).json({ error: "Internal Server Error" });
     }
 });
-app.get('/api/bus/total-booked-seats', async (req, res) => {
+app.get("/api/bus/total-booked-seats", async (req, res) => {
     try {
         const buses = await bus.find(); // Fetch all bus documents
 
         let totalBookedSeats = 0;
         let totalAvailableSeats = 0;
 
-        buses.forEach(bus => {
+        buses.forEach((bus) => {
             if (bus.seats) {
                 totalBookedSeats += bus.seats.length; // Count booked seats based on the length of the array
             }
@@ -191,8 +193,8 @@ app.get('/api/bus/total-booked-seats', async (req, res) => {
 
         res.json({ totalBookedSeats, totalAvailableSeats }); // Send the response
     } catch (error) {
-        console.error('Error fetching total booked seats:', error);
-        res.status(500).json({ error: 'Internal Server Error' });
+        console.error("Error fetching total booked seats:", error);
+        res.status(500).json({ error: "Internal Server Error" });
     }
 });
 
@@ -279,16 +281,15 @@ app.post("/api/busdetails", async (req, res) => {
     const { routeNumber } = req.body;
     console.log("Bus details requested for row number:", routeNumber);
     try {
-        const busDetails = await bus.findOne({ 
-            routeNumber
-         });
+        const busDetails = await bus.findOne({
+            routeNumber,
+        });
         console.log("Bus details:", busDetails);
         if (!busDetails) {
             return res.status(404).json({ message: "Bus not found" });
         }
         res.status(200).json(busDetails);
-    }
-    catch (err) {
+    } catch (err) {
         console.error("Error fetching bus details:", err);
         res.status(500).json({ message: "Failed to fetch bus details" });
     }
@@ -309,15 +310,13 @@ app.post("/api/buses/book", async (req, res) => {
             { $push: { seatsInfo: { sea, username, contact } } }
         );
     });
-    
+
     try {
         await Promise.all(updatePromises);
         console.log("All seat information updated successfully.");
     } catch (error) {
         console.error("Error updating seats:", error);
     }
-    
-    
 
     const buse = await bus.findOne({ routeNumber });
     console.log(buses);

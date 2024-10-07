@@ -194,10 +194,12 @@ async function fetchBusListings(from, to, date) {
 
         console.log("Server response:", response);
         if (!response.ok) {
+            document.querySelector(".bus-listing").innerHTML="No buses available for the selected route. Please try again!";
             const errorText = await response.text();
             throw new Error(
                 `HTTP error! status: ${response.status}, message: ${errorText}`
             );
+
         }
 
         const busListings = await response.json();
@@ -210,7 +212,12 @@ async function fetchBusListings(from, to, date) {
 // Display bus listings
 function displayBusListings(busListings) {
     const busListContainer = document.querySelector(".bus-listing");
-
+    // console.log(busListings.length);
+    // if (busListings.length == 0) {
+    //     busListContainer.innerHTML =
+    //         "No buses available for the selected route. Please try again!";
+    //     return;
+    // }
     // Clear previous results
     busListContainer.innerHTML = "";
     console.log("Displaying bus listings:", busListings);

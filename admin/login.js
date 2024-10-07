@@ -16,7 +16,7 @@ function closeModal() {
 
 function validateLoginForm(event) {
     const adminUserName = "Admin";
-    const adminPassword = "test@457";
+    const adminPassword = "$2b$10$y08VGiXLOvh53wOUGG1SXOj3VWiBOEuXGZdWdr426WcE3mWDhDEnm";
     event.preventDefault(); // Prevent the form from submitting traditionally
 
     // Get login data from the form
