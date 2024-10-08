@@ -4,10 +4,14 @@ const path = require("path");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 //const cors = require('cors');
-//const dotenv = require('dotenv');
+const dotenv = require('dotenv');
+require('dotenv').config();
+require('dotenv').config();
+
+
 const busRoutes = require("../routes/busRoutes"); // Importing bus routes
 
-//dotenv.config();
+dotenv.config();
 
 const bus = require("../models/Bus");
 const { collection, ticket } = require("../models/auth");
@@ -111,6 +115,12 @@ app.post("/api/tickets/search", async (req, res) => {
         res.status(500).json({ message: "Failed to fetch tickets" });
     }
 });
+app.get('/api/config', (req, res) => {
+    res.json({
+        adminUserName: process.env.ADMIN_USERNAME,
+        adminPassword: process.env.ADMIN_PASSWORD
+    });
+});
 
 app.post("/api/register", async (req, res) => {
     const { username, email, contact, password } = req.body;
@@ -139,34 +149,53 @@ app.post("/api/register", async (req, res) => {
         res.status(500).json({ message: "Registration failed" });
     }
 });
+// const bcrypt = require('bcrypt');
+
 app.post("/api/login", async (req, res) => {
     try {
-        let isPasswordValid = false;
+        const adminUsername = process.env.ADMIN_USERNAME; // or hardcoded "Admin"
+        const hashedAdminPassword = process.env.ADMIN_PASSWORD;
+        
+        let isAdmin = false;
         const { username, password } = req.body;
-        //console.log('Login data:', req.body);
-        // Find user by username or email
-        const user = await collection.findOne({ username }); // Adjust if using email
+        if(username == adminUsername && bcrypt.compare(hashedAdminPassword,password) ){
+            isAdmin = true;
+        }
+
+        // Find user by username
+        const user = await collection.findOne({ username }); // Adjust for email if necessary
         if (!user) {
             return res.status(400).json({ message: "User not found" });
         }
-        // if (user.password == password) {
-        //     isPasswordValid = true;
-        // }
-        // Check if the password is correct
-        isPasswordValid = await bcrypt.compare(password, user.password);
+        
+
+
+        // Compare the provided password with the hashed password stored in the database
+        const isPasswordValid = await bcrypt.compare(password, user.password);
 
         if (!isPasswordValid) {
             return res.status(400).json({ message: "Invalid password" });
         }
-        //res.redirect('/client/c-index.html');
-        // Successful login - You can implement session or JWT here
-        res.status(200).json({ message: "Login successful", user });
-        //res.redirect('/client/c-index.html');
+
+        // Successful login
+        // Optionally, implement JWT or session logic here for future scalability
+        res.status(200).json({
+            message: "Login successful",
+            user: {
+                username: user.username,
+                contact: user.contact,
+                isAdmin: isAdmin 
+            }
+        });
+        console.log("User data:", user);
+
     } catch (error) {
         console.error("Login error:", error);
         res.status(500).json({ message: "Internal server error" });
     }
 });
+
+
 app.get("/api/users/count", async (req, res) => {
     try {
         const userCount = await collection.countDocuments(); // Count documents in the User collection

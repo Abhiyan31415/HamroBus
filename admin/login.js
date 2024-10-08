@@ -15,14 +15,12 @@ function closeModal() {
 }
 
 function validateLoginForm(event) {
-    const adminUserName = "Admin";
-    const adminPassword = "$2b$10$lBMuKDAKuxchmkzztDgeUe5h1j7GEjHi.lyif6ry9wuhfrqyzecou";
     event.preventDefault(); // Prevent the form from submitting traditionally
 
     // Get login data from the form
     const loginData = {
-        username: document.getElementById("username").value, // Or use 'email' based on your backend
-        password: document.getElementById("password").value,
+        username: document.getElementById("username").value.trim(), // Trim spaces
+        password: document.getElementById("password").value.trim(),
     };
 
     // Basic validation to ensure fields aren't empty
@@ -30,46 +28,43 @@ function validateLoginForm(event) {
         alert("Please fill in both fields.");
         return;
     }
+
     console.log("Login data:", loginData);
+
     // Send the login data to the server
     fetch("/api/login", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify(loginData), // Convert the data into JSON format
+        body: JSON.stringify(loginData), // Send the password to the backend
     })
-        .then((response) => {
+        .then(response => {
             if (!response.ok) {
-                throw new Error(
-                    "Login failed. Please check your username and password."
-                );
+                throw new Error("Login failed. Please check your username and password.");
             }
             return response.json(); // If login is successful, the server should return a JSON response
         })
-        .then((data) => {
+        .then(data => {
             console.log("Success:", data);
-            showCustomAlert(
-                "Login success: ",
-                "Click here",
-                "to go to home page"
-            );
-            console.log("Login success:", data.user.username);
+            showCustomAlert("Login success: ", "Click here", "to go to home page");
+
+            // Store user info in local storage
             localStorage.setItem("username", data.user.username);
             localStorage.setItem("contact", data.user.contact);
-            if (
-                data.user.username == adminUserName &&
-                data.user.password == adminPassword
-            ) {
+            console.log(data.user.isAdmin);
+            // Redirect user based on role
+            if (data.user.isAdmin) {
                 window.location.href = "/admin/dashboard.html";
-                return;
+            } else {
+                window.location.href = "/client/c-index.html";
             }
-            window.location.href = "/client/c-index.html";
-            //Optionally, redirect to a dashboard or another page after successful login
-            // Change this URL based on your app
         })
-        .catch((error) => {
+        .catch(error => {
             console.error("Error:", error);
             alert(error.message);
         });
 }
+
+
+
